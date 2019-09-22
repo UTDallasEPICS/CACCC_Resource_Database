@@ -1,0 +1,8 @@
+.searchListContainer{
+  padding:5px 0 10px 15px;
+  fontSize:20;
+  cursor: pointer;
+}
+.searchListContainer:hover{
+  background: orange;
+}
