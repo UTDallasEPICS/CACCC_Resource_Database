@@ -2,13 +2,16 @@ var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost/resData';
+var mainDB = 'resData'; // name of dataBase
+var collec = 'resource'; // nmae of colllection
 var str = "";
 
 str = "<table style=\"width:100%\"> \n";
 str = str + " <tr><th>Resource:</th><th>Zipcode</th></tr> \n";
+
 MongoClient.connect(url, function(err, db)  {
-      var dataBase = db.db('resData');
-      var cursor = dataBase.collection('resource').find();
+      var dataBase = db.db(mainDB);
+      var cursor = dataBase.collection(collec).find();
       //noinspection JSDeprecatedSymbols
       cursor.each(function(err, item) {
         if (item != null) {
