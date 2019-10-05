@@ -6,7 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "react": "^16.9.0",
+    "react": "^16.10.2",
     "react-dom": "^16.9.0",
     "react-onclickoutside": "^6.9.0",
     "react-router-dom": "^5.0.1",
