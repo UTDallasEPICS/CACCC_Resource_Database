@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost/resData';
 var mainDB = 'resData'; // name of dataBase
+var url = 'mongodb://localhost/' + mainDB;
 var collec = 'resource'; // nmae of colllection
 var str = "";
 
