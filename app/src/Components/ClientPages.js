@@ -1,51 +1,58 @@
 import React from "react"
+import AddForm from "./AddForm"
+import DeleteForm from "./DeleteForm"
 class ClientPages extends React.Component{
+  state={
+    displayDeleteForm:false
+  }
+  showDeleteForm=()=>{
+    this.setState({displayDeleteForm:!this.state.displayDeleteForm})
+  }
   render(){
     return (
       <div>
       <div style={container}>
-      <div style={contactInfoContainerWrapper}>
-        <div style={contactInfoContainer}>
-        <div style={contactInfoName}>Workforce Investment Act Youth Service</div>
-        <div style={contactInfoDescription}>Offers year around work experience, educational assistance and job skills to youth ages 12-18 years. (Replaced
-             JTPA) North Central Texas Workforce Youth Recruiter
-        </div>
-        <hr/>
-        <div style={contactInfoListContainer}>
-        <div style={contactInfoList}>
-          (469) 229-0099
-        </div>
-        <div style={contactInfoList}>
-          http://northtexas.jobcorps.gov/
-        </div>
-        </div>
-        </div>
-        <button class="editButton">EDIT</button>
-        </div>
-        <div style={contactInfoContainerWrapper}><div style={contactInfoContainer}></div><button class="editButton">EDIT</button></div>
-        <div style={contactInfoContainerWrapper}><div style={contactInfoContainer}></div><button class="editButton">EDIT</button></div>
-        <div style={contactInfoContainerWrapper}><div style={contactInfoContainer}></div><button class="editButton">EDIT</button></div>
-        <div style={a}/>
+        {this.props.arr.map((list, i)=>{
+          return <div style={centerList}>
+          <div key={i}>
+            <div style={contactInfoContainer}>
+            <div style={contactInfoName}>Workforce Investment Act Youth Service</div>
+            <div style={address}>800 W Campbell Rd, Richardson, TX 75080</div>
+            <div style={contactInfoDescription}>Offers year around work experience, educational assistance and job skills to youth ages 12-18 years. (Replaced
+                 JTPA) North Central Texas Workforce Youth Recruiter
+            </div>
+            <hr/>
+            <div style={contactInfoListContainer}>
+            <div style={contactInfoList}>
+              (469) 229-0099
+            </div>
+            <div style={contactInfoList}>
+              http://northtexas.jobcorps.gov/
+            </div>
+            </div>
+            </div>
+            <button key={i} onClick={this.showDeleteForm}>EDIT</button>
+            {this.state.displayDeleteForm ? <DeleteForm
+              arr={this.props.arr}
+              updateComponent={this.props.updateComponent}
+              deleteComponent={this.props.deleteComponent}/>: null} </div>           </div>
+        })}
       </div>
       </div>
     )
   }
 }
-const contactInfoContainerWrapper={
-  position:"relative"
-
+const centerList={
+  display:"flex",
+  justifyContent:"center"
 }
 const container={
   height:"100vh",
   width:"100vw",
-  display:"flex",
-  justifyContent:"center",
-  flexWrap:"wrap",
   overflow:"auto",
 }
 const contactInfoContainer={
   width:"70vw",
-  minHeight:"20vh",
   height:"auto",
   background:"white",
   borderRadius:5,
@@ -62,10 +69,10 @@ const contactInfoDescription={
   color:"grey",
   padding:10
 }
-const a={
-  width:"70vw",
-  height:"20vh",
-  background:"transparent"
+const address={
+  fontSize:21,
+  color:"darkgrey",
+  padding:"5px 10px 0 10px"
 }
 const contactInfoListContainer={
   display:"flex",

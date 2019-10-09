@@ -2,13 +2,20 @@ import React from "react"
 import SearchBar from "./SearchBar"
 import SearchList from "./SearchList/SearchList"
 import './Navbar.css';
-
+import AddForm from "../AddForm"
 class Navbar extends React.Component{
   state={
-    searchBarClicked:false
+    searchBarClicked:false,
+    addFormClicked:false
   }
   onClick = ()=>{
     this.setState({searchBarClicked:true})
+  }
+  onClickForm = ()=>{
+    this.setState({addFormClicked:!this.state.addFormClicked})
+  }
+  resetOnClickForm = ()=>{
+    this.setState({addFormClicked:false})
   }
   resetSearchBarClicked =()=>{
     this.setState({searchBarClicked:false})
@@ -61,7 +68,8 @@ class Navbar extends React.Component{
      <a href="#">Edit</a>
    </div>
  </li>
- <button style={addButton}>ADD</button>
+ <button style={addButton} onClick={this.onClickForm}>ADD</button>
+ {this.state.addFormClicked ? <AddForm resetOnClickForm={this.resetOnClickForm} addComponent={this.props.addComponent}/>:null}
 </ul>
 <div stlye={searchBarContainer}>
 <SearchBar onClick={this.onClick}
