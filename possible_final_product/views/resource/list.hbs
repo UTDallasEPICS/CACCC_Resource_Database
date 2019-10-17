@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <h3> <a href="/resource/list/" style="color:black"> Resource Book
 <div class='btn-toolbar pull-right'>
   <a class="btn btn-secondary" href="/resource">
@@ -15,13 +16,13 @@
 <table class="table table-striped sortable">
     <thead>
         <tr>
-            <th style="width:9%" >Type <i class="fa fa-arrows-v" onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
-            <th style="width:12%">Name <i class="fa fa-arrows-v" onclick="sort_table(tbody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
+            <th class = "yes" style="width:9%" onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Type <i class="fa fa-caret-up"></i> </th>
+            <th class = "yes" style="width:12%" onclick="sort_table(tbody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Name <i class="fa fa-caret-up"></i></th>
             <th style="width:10%">Phone </th>
             <th style="width:10%">Address </th>
-            <th style="width:6%">City <i class="fa fa-arrows-v" onclick="sort_table(tbody, 4, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
-            <th style="width:5%">State <i class="fa fa-arrows-v" onclick="sort_table(tbody, 5, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
-            <th style="width:7%">Zipcode <i class="fa fa-arrows-v" onclick="sort_table(tbody, 6, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
+            <th class = "yes" style="width:6%" onclick="sort_table(tbody, 4, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">City  <i class="fa fa-caret-up"></i></th>
+            <th class = "yes" style="width:5%" onclick="sort_table(tbody, 5, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">State  <i class="fa fa-caret-up"></i></th>
+            <th class = "yes" style="width:7%" onclick="sort_table(tbody, 6, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Zipcode <i class="fa fa-caret-up"></i></th>
             <th style="width:7%">Hours</th>
             <th style="width:20%">Website</th>
             <th style="width:8%">Links</th>
@@ -41,11 +42,9 @@
             <td>{{this.resourceState}}</td>
             <td>{{this.resourceZip}}</td>
             <td>{{this.resourceHours}}</td>
-            <td>
-              {{this.resourceWebsite}}</td>
+            <td>{{this.resourceWebsite}}</td>
             <td>{{this.resourceLink}}</td>
             <td>
-
               <a href="/resource/{{this._id}}"><i class="fa fa-pencil fa-2x" style="color:black" aria-hidden="true"></i></a>
               <a href="/resource/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-2x" style="color:red" aria-hidden="true"></i></a>
             </td>
@@ -85,10 +84,11 @@ function sort_table(tbody, col, asc) {
 }
 </script>
 <style>
-/* i:hover {
+
+.yes:hover {
     cursor:pointer;
     background:#AAA;
-} */
+}
 #c2{
     width:120px;
     height:75px;
@@ -114,3 +114,8 @@ p:hover .extra {
 }
 
 </style>
+<script>
+$('.yes').click(function(){
+    $(this).find('i').toggleClass('fa fa-caret-up fa fa-caret-down')
+});
+</script>
