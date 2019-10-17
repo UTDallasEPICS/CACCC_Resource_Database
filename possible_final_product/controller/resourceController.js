@@ -41,7 +41,6 @@ function insertRecord(req, res) {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
                 res.render("resource/addOrEdit", {
-                    viewTitle: "Insert Resource",
                     resource: req.body
                 });
             }

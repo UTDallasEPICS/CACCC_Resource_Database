@@ -1,4 +1,4 @@
-<h3>{{viewTitle}}</h3>
+<h3>Add Resource</h3>
 
 <form action="/resource" method="POST" autocomplete="off">
     <input type="hidden" name="_id" value="{{resource._id}}">
@@ -8,56 +8,64 @@
         <input type="text" class="form-control" name="resourceType" placeholder="Resource Type" value="{{resource.resourceType}}">
     </div>
     <div class="form-group col-md-6">
-        <label>Resource Name</label>
-        <input type="text" class="form-control" name="resourceName" placeholder="Resource Name" value="{{resource.resourceName}}">
+        <label>Name</label>
+        <input type="text" class="form-control" name="resourceName" placeholder="Name" value="{{resource.resourceName}}">
     </div>
   </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Resource Phone</label>
-            <input type="text" class="form-control" name="resourcePhone" placeholder="Resource Phone" value="{{resource.resourcePhone}}">
+        <div class="form-group col-md-4">
+            <label>Phone Number(s)</label>
+            <input type="text" class="form-control" name="resourcePhone" placeholder="Phone Number(s)" value="{{resource.resourcePhone}}">
         </div>
-        <div class="form-group col-md-6">
-            <label>Resource Website</label>
-            <input type="text" class="form-control" name="resourceWebsite" placeholder="Resource Website" value="{{resource.resourceWebsite}}">
+        <div class="form-group col-md-4">
+            <label>Website</label>
+            <input type="text" class="form-control" name="resourceWebsite" placeholder="Website" value="{{resource.resourceWebsite}}">
         </div>
-    </div>
-    <div class="form-row">
-            <label>Resource Address</label>
-            <input type="text" class="form-control" name="resourceAddress" placeholder="Resource Address" value="{{resource.resourceAddress}}">
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <label>Resource City</label>
-            <input type="text" class="form-control" name="resourceCity" placeholder="Resource City" value="{{resource.resourceCity}}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Resource State</label>
-            <input type="text" class="form-control" name="resourceState" placeholder="Resource State" value="{{resource.resourceState}}">
-        </div>
-        <div class="form-group col-md-3">
-            <label>Resource Zipcode</label>
-            <input type="text" class="form-control" name="resourceZip" placeholder="Resource Zip" value="{{resource.resourceZip}}">
+        <div class="form-group col-md-4">
+              <label>Hours of Operation</label>
+              <input type="text" class="form-control" name="resourceHours" placeholder="Hours of Operation" value="{{resource.resourceHours}}">
         </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6">
-            <label>Resource Link</label>
-            <input type="text" class="form-control" name="resourceLink" placeholder="Resource Link" value="{{resource.resourceLink}}">
+      <div class="form-group col-md-5">
+            <label>Address</label>
+            <input type="text" class="form-control" name="resourceAddress" placeholder="Address" value="{{resource.resourceAddress}}">
       </div>
       <div class="form-group col-md-3">
-            <label>Resource Hours</label>
-            <input type="text" class="form-control" name="resourceHours" placeholder="Resource Hours" value="{{resource.resourceHours}}">
+          <label>City</label>
+          <input type="text" class="form-control" name="resourceCity" placeholder="City" value="{{resource.resourceCity}}">
       </div>
+      <div class="form-group col-md-2">
+            <label>State</label>
+            <input type="text" class="form-control" name="resourceState" placeholder="State" value="{{resource.resourceState}}">
+        </div>
+        <div class="form-group col-md-2">
+            <label>Zipcode</label>
+            <input type="text" class="form-control" name="resourceZip" placeholder="Zipcode" value="{{resource.resourceZip}}">
+        </div>
     </div>
+
     <div class="form-row">
-            <label>Resource Services</label>
-            <input type="text" class="form-control" name="resourceServices" placeholder="Resource Services" value="{{resource.resourceServices}}">
+      <div class="form-group col-md-6">
+            <label>Link</label>
+            <input type="text" class="form-control" name="resourceLink" placeholder="Links to any files" value="{{resource.resourceLink}}">
+      </div>
+    <div class="form-group col-md-6">
+            <label>Services Provided</label>
+            <input type="text" class="form-control" name="resourceServices" placeholder="Services Provided" value="{{resource.resourceServices}}">
     </div>
+  <div id = "wtf">
     <div class="form-row">
       <div class="form-group">
           <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
           <a class="btn btn-secondary" href="/resource/list"><i class="fa fa-list-alt"></i> View All</a>
       </div>
     </div>
+  </div>
 </form>
+<style>
+#wtf{
+    margin: auto;
+    width: 15%;
+}
+</style>
