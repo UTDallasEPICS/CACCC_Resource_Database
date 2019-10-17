@@ -1,0 +1,95 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="/controller/my.js"></script>
+</head>
+<h3> <a href="/resource/list/"> Resource List <a class="btn btn-secondary" href="/resource"><i class="fa fa-plus"></i> Create New</a></h3>
+<h8>
+  <a href="/resource/list/educational-resources"> Educational Resources </a>
+  |
+  <a href="/resource/list/community-resource-contacts"> Community Resource Contacts </a>
+</h8>
+<table style="width:100%" class="table table-striped sortable">
+    <thead>
+        <tr>
+            <th style="width:9%" >Type <i class="fa fa-arrows-v" onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i>
+</th>
+            <th style="width:12%">Name <i class="fa fa-arrows-v" onclick="sort_table(tbody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
+            <th style="width:10%">Phone </th>
+            <th style="width:12%">Address </th>
+            <th style="width:6%">City <i class="fa fa-arrows-v" onclick="sort_table(tbody, 4, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
+            <th style="width:7%">State <i class="fa fa-arrows-v" onclick="sort_table(tbody, 5, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
+            <th style="width:8%">Zipcode <i class="fa fa-arrows-v" onclick="sort_table(tbody, 6, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"></i></th>
+            <th style="width:10%">Hours</th>
+            <th style="width:9%">Website</th>
+            <th style="width:15%">Services</th>
+            <th style="width:8%">Link</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        {{#each list}}
+        <tr>
+            <td>{{this.resourceType}}</td>
+            <td>{{this.resourceName}}</td>
+            <td>{{this.resourcePhone}}</td>
+            <td>{{this.resourceAddress}}</td>
+            <td>{{this.resourceCity}}</td>
+            <td>{{this.resourceState}}</td>
+            <td>{{this.resourceZip}}</td>
+            <td>{{this.resourceHours}}</td>
+            <td>{{this.resourceWebsite}}</td>
+            <td><div id="c2">{{this.resourceServices}}</div> <a id="more" href="#">Read more </a></td>
+            <td>{{this.resourceLink}}</td>
+            <td>
+                <a href="/resource/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/resource/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script>
+var asc1 = -1, asc2 = 1;//varibles to provide ascending and descending order
+
+//tbody is which body to be sorted, col shows according to which column and asc defines whether in ascending order or in descending order
+function sort_table(tbody, col, asc) {
+    //variable declaration
+    var rows = tbody.rows,
+        rlen = rows.length,
+        arr = new Array(),
+        i, j, cells, clen;
+    //a 2D array is filled
+    // fill the array with values from the table
+
+    console.log("rows: ", rlen);
+    for (i = 0; i < rlen; i++) {
+        cells = rows[i].cells;
+        clen = cells.length;
+        arr[i] = new Array();
+        for (j = 0; j < clen; j++) {
+            arr[i][j] = cells[j].innerHTML;
+        }
+    }
+    // sort the array by the specified column number (col) and order (asc)
+    arr.sort(function (a, b) {
+        return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
+    });
+    // replace existing rows with new rows created from the sorted array
+    for (i = 0; i < rlen; i++) {
+        rows[i].innerHTML = "<td>" + arr[i].join("</td><td>") + "</td>";
+    }
+}
+</script>
+<style>
+i:hover {
+    cursor:pointer;
+    background:#AAA;
+}
+#c2{
+    width:100px;
+    height:50px;
+    display:block;
+    overflow:hidden;
+}
+
+</style>
