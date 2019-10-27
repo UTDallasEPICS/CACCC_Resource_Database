@@ -33,6 +33,7 @@ function insertRecord(req, res) {
     resource.resourceWebsite = req.body.resourceWebsite;
     resource.resourceServices = req.body.resourceServices;
     resource.resourceLink = req.body.resourceLink;
+    resource.resourceSearchData = req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
 
     resource.save((err, doc) => {
         if (!err)
@@ -51,6 +52,7 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
+    req.body.resourceSearchData = req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
     Resource.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
         if (!err) { res.redirect('resource/list'); }
         else {
@@ -65,7 +67,7 @@ function updateRecord(req, res) {
                 console.log('Error during record update : ' + err);
         }
     });
-}
+}req.body.resourceSearchData = req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
 
 
 router.get('/list', (req, res) => {
@@ -108,6 +110,20 @@ Resource.find({resourceType: "Community Resource Contacts"}, function(err, docs)
     }
   })
 });
+
+router.get('/list/:search', (req, res) => {
+Resource.find({resourceSearchData: new RegExp( search, 'i')}, function(err, docs){ //search is a string that the funcition is searching for, edit as needed
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+}); 
 
 function handleValidationError(err, body) {
     for (field in err.errors) {
