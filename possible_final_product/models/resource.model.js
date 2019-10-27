@@ -12,7 +12,8 @@ var resourceSchema = new mongoose.Schema({
  resourceHours: String,
  resourceWebsite: String,
  resourceServices: String,
- resourceLink: String
+ resourceLink: String,
+ resourceSearchData: String
 });
 
 mongoose.model('resource',resourceSchema);
