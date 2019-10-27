@@ -67,7 +67,7 @@ function updateRecord(req, res) {
                 console.log('Error during record update : ' + err);
         }
     });
-}req.body.resourceSearchData = req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
+}
 
 
 router.get('/list', (req, res) => {
