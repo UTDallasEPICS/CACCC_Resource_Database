@@ -5,12 +5,8 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label style="font-weight: bold;";>Resource Type</label>
-    <select id="dropdown"name="dropdown" class="form-control">
-    <option value="{{resource.resourceType}}">Beginner</option>
-    <option value="{{resource.resourceType}}">Intermediate</option>
-    <option value="{{resource.resourceType}}">Advanced</option>
-    <option value="{{resource.resourceType}}">Masters</option>
-  </select>
+
+    <input type="text" class="form-control" name="resourceType" placeholder="Resource Type" value="{{resource.resourceType}}">
     </div>
     <div class="form-group col-md-6">
         <label style="font-weight: bold;">Name</label>
@@ -42,17 +38,11 @@
       </div>
       <div class="form-group col-md-2">
             <label style="font-weight: bold;">State</label>
-            <select id="dropdown"name="dropdown" class="form-control">
-            <option value="{{resource.resourceType}}">Beginner</option>
-            <option value="{{resource.resourceType}}">Intermediate</option>
-            <option value="{{resource.resourceType}}">Advanced</option>
-            <option value="{{resource.resourceType}}">Masters</option>
-            <script>
+            <input type="text" class="form-control" name="resourceState" placeholder="State" value="{{resource.resourceState}}">
+            <!-- <script>
               let strUser=$('option:selected').text();
-              ///let s=$('option:selected').val().type();
               console.log(strUser);
-              //  console.log(s);
-            </script>
+            </script> -->
           </select>
         </div>
         <div class="form-group col-md-2">
@@ -79,10 +69,20 @@
     </div>
   </div>
 </form>
+
 <style>
-/* Temoc WHOOSH-Dab */
 #wtf{
     margin: auto;
     width: 15%;
 }
 </style>
+
+<!-- <script>
+function getSelectValue()
+{
+    var selectedValue = document.getElementById("dropdown").value;
+    console.log(selectedValue);
+    resource.resourceType = selectedValue;
+}
+getSelectValue();
+</script> -->
