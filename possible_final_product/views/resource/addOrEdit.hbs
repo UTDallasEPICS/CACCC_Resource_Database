@@ -5,8 +5,25 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label style="font-weight: bold;";>Resource Type</label>
-
-    <input type="text" class="form-control" name="resourceType" placeholder="Resource Type" value="{{resource.resourceType}}">
+        <input type = "text" class = "form-control" placeholder="Resource Type" list="resourceTypes" name="resourceType" value="{{resource.resourceType}}">
+          <datalist id="resourceTypes">
+            <option value="Adoption Services">
+            <option value="Basic Care Groups">
+            <option value="Behavorial Health">
+            <option value="Child Care">
+            <option value="Child Support">
+            <option value="Disabled People">
+            <option value="Drug and Alcohol Resources">
+            <option value="Emergency Housing">
+            <option value="Ethnic and Diversity Resources">
+            <option value="Financial Assistance">
+            <option value="Food Pantries">
+            <option value="Job Assistance">
+            <option value="Legal Information">
+            <option value="Parenting Classes">
+            <option value="Pet Services">
+            <option value="Transportation Resources">
+          </datalist>
     </div>
     <div class="form-group col-md-6">
         <label style="font-weight: bold;">Name</label>
@@ -38,12 +55,60 @@
       </div>
       <div class="form-group col-md-2">
             <label style="font-weight: bold;">State</label>
-            <input type="text" class="form-control" name="resourceState" placeholder="State" value="{{resource.resourceState}}">
-            <!-- <script>
-              let strUser=$('option:selected').text();
-              console.log(strUser);
-            </script> -->
-          </select>
+            <input type = "text" class = "form-control" placeholder="State" list="states" name="resourceState" value="{{resource.resourceState}}">
+              <datalist id="states">
+                <option value="Texas">
+                <option value="Alabama">
+                <option value="Alaska">
+                <option value="Arizona">
+                <option value="Arkansas">
+                <option value="California">
+                <option value="Colorado">
+                <option value="Connecticut">
+                <option value="Delaware">
+                <option value="DC">
+                <option value="Florida">
+                <option value="Georgia">
+                <option value="Hawaii">
+                <option value="Idaho">
+                <option value="Illinois">
+                <option value="Indiana">
+                <option value="Iowa">
+                <option value="Kansas">
+                <option value="Kentucky">
+                <option value="Louisiana">
+                <option value="Maine">
+                <option value="Maryland">
+                <option value="Massachusetts">
+                <option value="Michigan">
+                <option value="Minnesota">
+                <option value="Mississippi">
+                <option value="Missouri">
+                <option value="Montana">
+                <option value="Nebraska">
+                <option value="Nevada">
+                <option value="New Hampshire">
+                <option value="New Jersey">
+                <option value="New Mexico">
+                <option value="New York">
+                <option value="North Carolina">
+                <option value="North Dakota">
+                <option value="Ohio">
+                <option value="Oklahoma">
+                <option value="Oregon">
+                <option value="Pennsylvania">
+                <option value="Rhode Island">
+                <option value="South Carolina">
+                <option value="South Dakota">
+                <option value="Tennessee">
+                <option value="Utah">
+                <option value="Vermont">
+                <option value="Virginia">
+                <option value="Washington">
+                <option value="West Virginia">
+                <option value="Wisconsin">
+                <option value="Wyoming">
+              </datalist>
         </div>
         <div class="form-group col-md-2">
             <label style="font-weight: bold;">Zipcode</label>
@@ -76,13 +141,3 @@
     width: 15%;
 }
 </style>
-
-<!-- <script>
-function getSelectValue()
-{
-    var selectedValue = document.getElementById("dropdown").value;
-    console.log(selectedValue);
-    resource.resourceType = selectedValue;
-}
-getSelectValue();
-</script> -->
