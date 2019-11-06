@@ -14,9 +14,6 @@ var resourceSchema = new mongoose.Schema({
  resourceServices: String,
  resourceLink: String,
  resourceCount: Array,
- resourceDate: Array,
- resourceWork: Array,
- resourceWhy: Array,
  resourceSearchData: String
 });
 

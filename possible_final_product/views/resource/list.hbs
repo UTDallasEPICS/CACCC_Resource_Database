@@ -26,7 +26,6 @@
             <th style="width:7%">Hours</th>
             <th style="width:20%">Website</th>
             <th style="width:8%">Links</th>
-            <th style="width:8%">Test</th>
             <th></th>
         </tr>
     </thead>
@@ -44,9 +43,6 @@
             <td>{{this.resourceHours}}</td>
             <td>{{this.resourceWebsite}}</td>
             <td>{{this.resourceLink}}</td>
-            {{#each resourceCount}}
-            <td>{{0}}</td>
-            {{/each}}
             <td style="display:flex; justify-content:center; align-items:center;">
               <a href="/resource/{{this._id}}"><i class="fa fa-pencil fa-2x" style="color:black; margin-right:10px;" aria-hidden="true"></i></a>
               <a href="/resource/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-2x" style="color:red;" aria-hidden="true"></i></a>
