@@ -69,6 +69,27 @@ function updateRecord(req, res) {
     });
 }
 
+function trackRecord(req, res) {
+    resource.resourceCount = req.body.resourceCount;
+    resource.resourceDate = req.body.resourceDate;
+    resource.resourceBinary = req.body.resourceBinary;
+    resource.resourceWhy = req.body.resourceWhy;
+
+    resource.save((err, doc) => {
+        if (!err)
+            res.redirect('resource/listTrack');
+        else {
+            if (err.name == 'ValidationError') {
+                handleValidationError(err, req.body);
+                res.render("resource/list", {
+                    resource: req.body
+                });
+            }
+            else
+                console.log('Error during record tracking : ' + err);
+        }
+    });
+}
 
 router.get('/list', (req, res) => {
     Resource.find((err, docs) => {
@@ -123,7 +144,7 @@ Resource.find({resourceSearchData: new RegExp( search, 'i')}, function(err, docs
       });
     }
   })
-}); 
+});
 
 function handleValidationError(err, body) {
     for (field in err.errors) {

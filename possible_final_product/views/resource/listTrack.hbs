@@ -13,17 +13,10 @@
     <tbody id="tbody">
         {{#each list}}
         <tr>
-            <td>{{this.resourceType}}</td>
-            <td>{{this.resourceName}}
-            <p style="font-size: small"> Show Info <span class="extra">{{this.resourceServices}}</span></p></td>
-            <td>{{this.resourcePhone}}</td>
-            <td>{{this.resourceAddress}}</td>
-            <td>{{this.resourceCity}}</td>
-            <td>{{this.resourceState}}</td>
-            <td>{{this.resourceZip}}</td>
-            <td>{{this.resourceHours}}</td>
-            <td>{{this.resourceWebsite}}</td>
-            <td>{{this.resourceLink}}</td>
+            <td>{{this.resourceCount}}</td>
+            <td>{{this.resourceDate}}</td>
+            <td>{{this.resourceBinary}}</td>
+            <td>{{this.resourceWhy}}</td>
             <td style="display:flex; justify-content:center; align-items:center;">
               <a href="/resource/{{this._id}}"><i class="fa fa-pencil fa-2x" style="color:black; margin-right:10px;" aria-hidden="true"></i></a>
               <a href="/resource/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-2x" style="color:red;" aria-hidden="true"></i></a>
