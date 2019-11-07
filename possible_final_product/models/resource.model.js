@@ -13,7 +13,6 @@ var resourceSchema = new mongoose.Schema({
  resourceWebsite: String,
  resourceServices: String,
  resourceLink: String,
- resourceCount: Array,
  resourceSearchData: String
 });
 

@@ -111,7 +111,7 @@ Resource.find({resourceType: "Community Resource Contacts"}, function(err, docs)
 });
 
 router.get('/list/:search', (req, res) => {
-Resource.find({resourceSearchData: new RegExp( search, 'i')}, function(err, docs){ //search is a string that the funcition is searching for, edit as needed
+Resource.find({resourceSearchData: new RegExp(req.body.resourceSearchData, 'i')}, function(err, docs){ //search is a string that the funcition is searching for, edit as needed
     if(err){
         console.log(err);
         return
