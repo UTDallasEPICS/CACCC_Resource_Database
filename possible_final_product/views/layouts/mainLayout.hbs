@@ -7,8 +7,10 @@
     <ul>
   <li style="float:left"><a class = "btn btn-secondary" href="/resource/list/"> Resource Book </a></li>
   <li style="margin-left: 600px; position: absolute;">
-    <input class = "search" type="text" name="resourceSearchData">
-     <button style="margin-top: 7px;" type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+     <form action="/resource/list/search" method="POST" autocomplete= "off">
+         <input class = "search" type="text" name="resourceSearchData">
+     <button type="submit" class="btn btn-info">Search</button>
+   </form>
   </li>
   <li style="float:right"> <a class="btn btn-secondary" href="/resource">
     <i class="fa fa-plus"></i>
