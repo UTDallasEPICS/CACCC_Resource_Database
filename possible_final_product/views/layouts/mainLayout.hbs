@@ -1,62 +1,93 @@
 <!DOCTYPE html>
-
 <html>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <head style="background-color: #009933">
-
-    <ul>
-  <li style="float:left"><a class = "btn btn-secondary" href="/resource/list/"> Resource Book  <i class="fa fa-list-alt"></i> </a></li>
-  <li>
-     <form action="/resource/list/search" method="POST" autocomplete= "off">
+  <li style="display:flex; justify-content:center;">
+    <form action="/resource/list/search" method="POST" autocomplete= "off">
          <input class = "search" type="text" name="resourceSearchData">
      <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
-   </form>
   </li>
-  <li style="float:right"> <a class="btn btn-secondary" href="/resource">
-    <i class="fa fa-plus"></i>
-    Add New Resource
-  </a></li>
-</ul>
-
   </head>
+  <div class="sidebar" style="margin-left: -230px;">
 
+         <ul class="sidebar-nav">
+             <li>
+                 <a id="navbar-toggle">Close <i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i></a>
+             </li>
+             <li>
+                <a style="  text-decoration: none;" href="/resource">Add New Resource<i class="fa fa-plus menu-icon fa-2x" ></i></a>
+            </li>
+            <li><a style="  text-decoration: none;" href="/resource/list/"> Resource Book <i class="fa fa-book menu-icon fa-2x"></i></a></li>
+            <li><a style="text-decoration:none;">Adoption Services</a></li>
+            <li><a style="text-decoration:none;">Basic Care Groups</a></li>
+            <li><a style="text-decoration:none;">Behavorial Health</a></li>
+            <li><a style="text-decoration:none;">Child Care</a></li>
+            <li><a style="text-decoration:none;">Child Support</a></li>
+            <li><a style="text-decoration:none;">Disabled People</a></li>
+            <li><a style="text-decoration:none;">Drug & Alcohol Resources</a></li>
+            <li><a style="text-decoration:none;">Emergency Housing</a></li>
+            <li><a style="text-decoration:none;">Ethnic & Diversity Resources</a></li>
+            <li><a style="text-decoration:none;">Financial Assistance</a></li>
+            <li><a style="text-decoration:none;">Food Pantries</a></li>
+            <li><a style="text-decoration:none;">Job Assistance</a></li>
+            <li><a style="text-decoration:none;">Legal Information</a></li>
+            <li><a style="text-decoration:none;">Parenting Classes</a></li>
+            <li><a style="text-decoration:none;">Pet Services</a></li>
+            <li><a style="text-decoration:none;">Transportation Resources</a></li>
+         </ul>
+     </div>
     <title>Resource Book</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <body class="bg-info" style="background-color:#45b249 !important;padding:0 20px 20px 20px; ">
 <hr>
     <div class="row">
-        <div class="col-md-10 offset-md-1" style="background-color: #fafafa;margin-top: 25px;padding:20px; border-radius:20px; box-shadow: -1px 0px 5px 1px green;">
+        <div class="col-md-10 offset-md-1" style="background-color: #fafafa;margin-top: 25px;padding:10px; border-radius:20px; box-shadow: -1px 0px 5px 1px green;">
             {{{body}}}
         </div>
     </div>
 </body>
 <style>
+
+.sidebar {
+    color: #FFF;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+    -webkit-transition: margin .5s;
+    transition: margin .5s;
+    list-style: none;
+    top:0;
+    overflow: hidden;
+}
+#navbar-toggle {
+    cursor: pointer;
+}
+.menu-icon {
+    float: right;
+    font-size: 30px;
+}
+.sidebar-nav li{
+  margin-right: 10px;
+}
 .btn-secondary
 {
   background-color: black;
 }
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  list-style: none;
   overflow: hidden;
-
+  background-color: #45b249;
   top: 0;
   width: 100%;
 }
-
-li {
-  float: left;
-}
-
 li a {
   display: block;
   color: white;
-  text-align: center;
   text-decoration: none;
   margin-top: 10px;
+  margin-left: -30px;
 }
 
 .search[type=text] {
@@ -68,13 +99,30 @@ li a {
   background-color: white;
   background-position: right;
   background-repeat: no-repeat;
-  /* margin-top: 10px; */
-  /* margin-left: 20px; */
+  margin-top: 10px;
+  margin-left: 20px;
   padding-bottom: 8px;
 
-
 }
 
 }
+</style>
+</html>
+<script>
+     var state = "minimized";
+//Check if navbar is expanded or minimized and handle
+onload=$('#navbar-toggle').click(function() {
+    if (state == "expanded") {
+        $('.sidebar').css('margin-left', '-230px');
+        state = "minimized";
+    } else {
+        if (state == "minimized") {
+            $('.sidebar').css('margin-left', '-20px');
+            state = "expanded";
+        }
+    }
+})
+</script>
+
 </style>
 </html>
