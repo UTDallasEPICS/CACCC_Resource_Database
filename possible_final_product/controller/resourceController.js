@@ -152,6 +152,20 @@ Resource.find({resourceType: "Child Support"}, function(err, docs){
   })
 });
 
+router.get('/list/CommunityResourceContacts', (req, res) => {
+Resource.find({resourceType: "Community Resource Contacts"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
 router.get('/list/DisabilityAssistance', (req, res) => {
 Resource.find({resourceType: "Disability Assistance"}, function(err, docs){
     if(err){
@@ -168,6 +182,20 @@ Resource.find({resourceType: "Disability Assistance"}, function(err, docs){
 
 router.get('/list/DrugsAndAlcohol', (req, res) => {
 Resource.find({resourceType: "Drug & Alcohol Resources"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/EducationalResources', (req, res) => {
+Resource.find({resourceType: "Educational Resources"}, function(err, docs){
     if(err){
         console.log(err);
         return
