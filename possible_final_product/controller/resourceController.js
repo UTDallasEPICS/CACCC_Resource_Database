@@ -82,8 +82,8 @@ router.get('/list', (req, res) => {
     });
 });
 
-router.get('/list/educational-resources', (req, res) => {
-Resource.find({resourceType: "Educational Resources"}, function(err, docs){
+router.get('/list/AdoptionServices', (req, res) => {
+Resource.find({resourceType: "Adoption Services"}, function(err, docs){
     if(err){
         console.log(err);
         return
@@ -96,8 +96,204 @@ Resource.find({resourceType: "Educational Resources"}, function(err, docs){
   })
 });
 
-router.get('/list/community-resource-contacts', (req, res) => {
-Resource.find({resourceType: "Community Resource Contacts"}, function(err, docs){
+router.get('/list/BasicCareGroups', (req, res) => {
+Resource.find({resourceType: "Basic Care Groups"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/BehavorialHealth', (req, res) => {
+Resource.find({resourceType: "Behavorial Health"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/ChildCare', (req, res) => {
+Resource.find({resourceType: "Child Care"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/ChildSupport', (req, res) => {
+Resource.find({resourceType: "Child Support"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/DisabilityAssistance', (req, res) => {
+Resource.find({resourceType: "Disability Assistance"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/DrugsAndAlcohol', (req, res) => {
+Resource.find({resourceType: "Drug & Alcohol Resources"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/EmergencyHousing', (req, res) => {
+Resource.find({resourceType: "Emergency Housing"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/EthnicAndDiversityResources', (req, res) => {
+Resource.find({resourceType: "Ethnic & Diversity Resources"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/FinancialAssistance', (req, res) => {
+Resource.find({resourceType: "Financial Assistance"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/FoodPantries', (req, res) => {
+Resource.find({resourceType: "Food Pantries"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/JobAssistance', (req, res) => {
+Resource.find({resourceType: "Job Assistance"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/LegalInformation', (req, res) => {
+Resource.find({resourceType: "Legal Information"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/ParentingClasses', (req, res) => {
+Resource.find({resourceType: "Parenting Classes"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/PetServices', (req, res) => {
+Resource.find({resourceType: "Pet Services"}, function(err, docs){
+    if(err){
+        console.log(err);
+        return
+    }
+    else {
+      res.render("resource/list", {
+          list: docs
+      });
+    }
+  })
+});
+
+router.get('/list/TransportationResources', (req, res) => {
+Resource.find({resourceType: "Transportation Resources"}, function(err, docs){
     if(err){
         console.log(err);
         return
