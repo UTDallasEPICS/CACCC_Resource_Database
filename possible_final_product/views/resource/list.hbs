@@ -39,39 +39,40 @@
     </tbody>
 </table>
 <script>
-var asc1 = -1, asc2 = 1;//varibles to provide ascending and descending order
+    //varibles to provide ascending and descending order
+    var asc1 = -1, asc2 = 1;
 
-//tbody is which body to be sorted, col shows according to which column and asc defines whether in ascending order or in descending order
-function sort_table(tbody, col, asc) {
-    //variable declaration
-    var rows = tbody.rows,
-        rlen = rows.length,
-        arr = new Array(),
-        i, j, cells, clen;
-    //a 2D array is filled
-    // fill the array with values from the table
+    //tbody is which body to be sorted, col shows according to which column and asc defines whether in ascending order or in descending order
+    function sort_table(tbody, col, asc) {
+        //variable declaration
+        var rows = tbody.rows,
+            rlen = rows.length,
+            arr = new Array(),
+            i, j, cells, clen;
+        //a 2D array is filled
+        // fill the array with values from the table
 
-    for (i = 0; i < rlen; i++) {
-        cells = rows[i].cells;
-        clen = cells.length;
-        arr[i] = new Array();
-        for (j = 0; j < clen; j++) {
-            arr[i][j] = cells[j].innerHTML;
+        for (i = 0; i < rlen; i++) {
+            cells = rows[i].cells;
+            clen = cells.length;
+            arr[i] = new Array();
+            for (j = 0; j < clen; j++) {
+                arr[i][j] = cells[j].innerHTML;
+            }
+        }
+        // sort the array by the specified column number (col) and order (asc)
+        arr.sort(function (a, b) {
+            return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
+        });
+        // replace existing rows with new rows created from the sorted array
+        for (i = 0; i < rlen; i++) {
+            rows[i].innerHTML = "<td>" + arr[i].join("</td><td>") + "</td>";
         }
     }
-    // sort the array by the specified column number (col) and order (asc)
-    arr.sort(function (a, b) {
-        return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
-    });
-    // replace existing rows with new rows created from the sorted array
-    for (i = 0; i < rlen; i++) {
-        rows[i].innerHTML = "<td>" + arr[i].join("</td><td>") + "</td>";
-    }
-}
 </script>
 
 <script>
-$('.sortableHeader').click(function(){
-    $(this).find('i').toggleClass('fa fa-caret-up fa fa-caret-down')
-});
+    $('.sortableHeader').click(function(){
+        $(this).find('i').toggleClass('fa fa-caret-up fa fa-caret-down')
+    });
 </script>
