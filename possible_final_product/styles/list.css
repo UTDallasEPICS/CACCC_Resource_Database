@@ -1,0 +1,18 @@
+.sortableHeader:hover {
+    cursor:pointer;
+    background:#AAA;
+}
+table
+{
+    table-layout: fixed;
+    width: 100%;
+}
+
+.extraInfo {
+    display: none;
+}
+
+p:hover .extraInfo {
+  transition-timing-function: linear;
+  display: inline-block;
+}

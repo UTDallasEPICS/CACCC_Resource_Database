@@ -1,4 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <h3>Add Resource</h3>
 <form action="/resource" method="POST" autocomplete="off" >
     <input type="hidden" name="_id" value="{{resource._id}}">
@@ -127,7 +126,7 @@
             <label style="font-weight: bold;">Resource Description</label>
             <textarea style="resize:none; height:180px" class="form-control" name="resourceServices" placeholder="Resource Description" value="{{resource.resourceServices}}">{{resource.resourceServices}}</textarea>
     </div>
-  <div id = "wtf">
+  <div id = "lastRow">
     <div class="form-row">
       <div class="form-group" style="width:100%; display:flex; justify-content:center;">
         <div style="padding:5px ">  <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button></div>
@@ -136,10 +135,3 @@
     </div>
   </div>
 </form>
-
-<style>
-#wtf{
-    margin: auto;
-    width: 15%;
-}
-</style>

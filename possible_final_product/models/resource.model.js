@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+// schema of the database
 var resourceSchema = new mongoose.Schema({
  resourceType: String,
  resourceName: String,
@@ -13,7 +13,9 @@ var resourceSchema = new mongoose.Schema({
  resourceWebsite: String,
  resourceServices: String,
  resourceLink: String,
- resourceSearchData: String
+//  used to create search parameters for the database
+ resourceSearchData: String 
 });
 
+//passed the schema to a mongoose model
 mongoose.model('resource',resourceSchema);
