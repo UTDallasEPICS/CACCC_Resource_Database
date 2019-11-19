@@ -1,5 +1,4 @@
 .sidebar {
-    color: #FFF;
     width: 253px;
     height: 100vh;
     position: fixed;
@@ -8,7 +7,11 @@
     transition: margin .5s;
     list-style: none;
     top:0;
-    overflow: hidden;
+    overflow-y: scroll;
+    background: hsla(120, 87%, 11%, 1);
+}
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 #navbar-toggle {
     cursor: pointer;
@@ -27,21 +30,15 @@
 ul {
   list-style: none;
   overflow: hidden;
-  background-color: black;
   top: 0;
   width: 100%;
 }
 li a {
   display: block;
-  color: white;
+  color: hsla(120, 87%, 11%, 1);;
   text-decoration: none;
   margin-top: 10px;
   margin-left: -30px;
-}
-.resourceTypes{
-  margin-top: 18.6px;
-  color:black;
-  /* padding-bottom: 3px; */
 }
 
 .search[type=text] {
