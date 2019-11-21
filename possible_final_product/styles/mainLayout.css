@@ -8,7 +8,7 @@
     list-style: none;
     top:0;
     overflow-y: scroll;
-    background: hsla(120, 87%, 11%, 1);
+    background: hsla(120, 87%, 30%, 1);
 }
 .sidebar::-webkit-scrollbar {
     display: none;

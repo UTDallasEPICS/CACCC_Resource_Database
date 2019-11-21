@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/styles/list.css">
     <link rel="stylesheet" type="text/css" href="/styles/addOrEdit.css">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link href="/styles/all.css" rel="stylesheet">
     <script src="/js/all.js"></script>
     <script src="/js/jquery.min.js"></script>
@@ -17,7 +18,7 @@
         <li style="display:flex; justify-content:center;">
             <form action="/resource/list/search" method="POST" autocomplete= "off">
                 <input class = "search" type="text" name="resourceSearchData">
-            <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+            <button type="submit" class="btn btn-info" style="background: hsla(120, 87%, 30%, 1)"><i class="fa fa-search"></i></button>
             </form>
         </li>
     </head>
@@ -25,12 +26,12 @@
     <div class="sidebar" style="margin-left: -230px; ">
             <ul class="sidebar-nav">
                 <li>
-                    <a id="navbar-toggle" >Close <i style="color:white" class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i></a>
+                    <a id="navbar-toggle" >Close <i style="color:white" class="fa fa-bars menu-icon" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                    <a style="text-decoration: none;" href="/resource">Add New Resource<i style="color:white" class="fa fa-plus menu-icon fa-2x" ></i></a>
+                    <a style="text-decoration: none;" href="/resource">Add New Resource<i style="color:white" class="fa fa-plus menu-icon" ></i></a>
                 </li>
-                <li><a style="text-decoration: none;" href="/resource/list/"> Resource Book <i style="color:white" class="fa fa-book menu-icon fa-2x"></i></a></li><br>
+                <li><a style="text-decoration: none;" href="/resource/list/"> Resource Book <i style="color:white" class="fa fa-book menu-icon"></i></a></li><br>
                 <li class = "resourceTypes"><a href="/resource/list/AdoptionServices" >Adoption Services</a></li>
                 <li class = "resourceTypes"><a href="/resource/list/BasicCareGroups" >Basic Care Groups</a></li>
                 <li class = "resourceTypes"><a href="/resource/list/BehavorialHealth" >Behavorial Health</a></li>
@@ -68,7 +69,7 @@
 onload=$('#navbar-toggle').click(function() {
     if (state == "expanded") {
         $('.sidebar').css('margin-left', '-230px');
-        $('.sidebar-nav li a').css('color', 'hsla(120, 87%, 11%, 1)')
+        $('.sidebar-nav li a').css('color', 'hsla(120, 87%, 30%, 1)')
         state = "minimized";
     } else {
         if (state == "minimized") {
@@ -86,7 +87,7 @@ onload=$('#navbar-toggle').click(function() {
         container.has(e.target).length === 0) // ... nor a descendant-child of the container
     {
       $('.sidebar').css('margin-left', '-230px');
-      $('.sidebar-nav li a').css('color', 'hsla(120, 87%, 11%, 1)')
+      $('.sidebar-nav li a').css('color', 'hsla(120, 87%, 30%, 1)')
       state = "minimized";
     }
 });
