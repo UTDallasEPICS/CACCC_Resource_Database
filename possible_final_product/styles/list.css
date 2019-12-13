@@ -7,16 +7,19 @@ table
 {
     table-layout: fixed;
     width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
 }
 
 .extraInfo {
-    visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
+  visibility: hidden;
+  width: 200px;
+  background-color: rgb(59, 175, 146);
+  color: #000;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 10px 10px;
+  opacity: 0.8;
 
   /* Position the tooltip */
   position: absolute;
@@ -24,25 +27,5 @@ table
 }
 
 p:hover .extraInfo {
-  /* transition-timing-function: linear; */
-  /* display: inline-block; */
   visibility: visible;
 }
-
-/* .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  /* position: absolute;
-  z-index: 1; */
-/* } */ 
-
-/* .tooltip:hover .tooltiptext {
-  
-} */

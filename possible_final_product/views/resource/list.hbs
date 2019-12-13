@@ -9,9 +9,8 @@
             <th class = "sortableHeader" style="width:7%" onclick="sort_table(tbody, 5, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">State  <i class="fa fa-caret-up"></i></th>
             <th class = "sortableHeader" style="width:7%" onclick="sort_table(tbody, 6, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Zipcode <i class="fa fa-caret-up"></i></th>
             <th style="width:7%">Hours</th>
-            <th style="width:16%">Website</th>
-            <th style="width:10%">Links</th>
-            <th></th>
+            <th style="width:15%">Website</th>
+            <th style="width:9%"></th>
         </tr>
     </thead>
     <tbody id="tbody">
@@ -26,10 +25,11 @@
             <td>{{this.resourceState}}</td>
             <td>{{this.resourceZip}}</td>
             <td>{{this.resourceHours}}</td>
-            <td><a href={{this.resourceWebsite}} target='_blank'>{{this.resourceWebsite}}</a></td>
-            <td>{{this.resourceLink}}</td>
-            <td >
+            <td>
+                <a href={{this.resourceWebsite}} target='_blank'>{{this.resourceWebsite}}</a></td>
+            <td>
                 <div style="display:flex;">
+                  <a href={{this.resourceLink}} target='_blank'><i class="fas fa-file fa-2x" style="color:black; margin-right:10px;" aria-hidden="true"></i></a>
                   <a href="/resource/{{this._id}}"><i class="fa fa-pencil-alt fa-2x" style="color:black; margin-right:10px;" aria-hidden="true"></i></a>
                   <a href="/resource/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-2x" style="color:red;" aria-hidden="true"></i></a>
                 </div>
@@ -73,7 +73,6 @@
 
 <script>
     $('.sortableHeader').click(function(){
-        console.log('yeet yeet')
         $(this).find('i.fa').toggleClass('fa-caret-up fa-caret-down')
     });
 </script>
