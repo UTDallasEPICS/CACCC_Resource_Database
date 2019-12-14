@@ -1,4 +1,7 @@
-.sidebar {
+body{
+    overflow-x: hidden;
+  }
+  .sidebar {
     width: 253px;
     height: 100vh;
     position: fixed;
@@ -22,6 +25,9 @@
 }
 .sidebar-nav li{
   margin-right: 10px;
+}
+.sidebar-nav li a{
+color: hsla(120, 87%, 30%, 1);
 }
 .btn-secondary
 {

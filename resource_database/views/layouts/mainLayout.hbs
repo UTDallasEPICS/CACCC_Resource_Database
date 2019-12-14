@@ -15,12 +15,12 @@
         <li style="display:flex; justify-content:center;">
             <form action="/resource/list/search" method="POST" autocomplete= "off">
                 <input class = "search" type="text" name="resourceSearchData">
-            <button type="submit" class="btn btn-info" style="background: hsla(120, 87%, 30%, 1)"><i class="fa fa-search"></i></button>
+            <button type="submit" class="btn btn-info" style="background: hsla(120, 87%, 30%, 1); position:relative; right:5px; top:2px;"><i class="fa fa-search"></i></button>
             </form>
         </li>
     </head>
-
-    <div class="sidebar" style="margin-left: -230px; ">
+    {{!--code for the sidebar--}}
+    <div class="sidebar" style="margin-left: -211px; ">
             <ul class="sidebar-nav">
                 <li>
                     <a id="navbar-toggle" >Close <i style="color:white" class="fa fa-bars menu-icon" aria-hidden="true"></i></a>
@@ -29,31 +29,31 @@
                     <a style="text-decoration: none;" href="/resource">Add New Resource<i style="color:white" class="fa fa-plus menu-icon" ></i></a>
                 </li>
                 <li><a style="text-decoration: none;" href="/resource/list/"> Resource Book <i style="color:white" class="fa fa-book menu-icon"></i></a></li><br>
-                <li class = "resourceTypes"><a href="/resource/list/AdoptionServices" >Adoption Services</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/BasicCareGroups" >Basic Care Groups</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/BehavorialHealth" >Behavorial Health</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/ChildCare" >Child Care</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/ChildSupport" >Child Support</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/CommunityResourceContacts">Community Resource Contacts</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/DisabilityAssistance">Disability Assistance</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/DrugsAndAlcohol" >Drug & Alcohol Resources</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/EducationalResources" >Educational Resources</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/EmergencyHousing">Emergency Housing</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/EthincAndDiversityResources" >Ethnic & Diversity Resources</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/FinancialAssistance" >Financial Assistance</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/FoodPantries" >Food Pantries</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/JobAssistance">Job Assistance</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/LegalInformation" >Legal Information</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/ParentingClasses" >Parenting Classes</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/PetServices" >Pet Services</a></li>
-                <li class = "resourceTypes"><a href="/resource/list/TransportationResources">Transportation Resources</a></li>
+                <li><a href="/resource/list/AdoptionServices" >Adoption Services</a></li>
+                <li><a href="/resource/list/BasicCareGroups" >Basic Care Groups</a></li>
+                <li><a href="/resource/list/BehavorialHealth" >Behavorial Health</a></li>
+                <li><a href="/resource/list/ChildCare" >Child Care</a></li>
+                <li><a href="/resource/list/ChildSupport" >Child Support</a></li>
+                <li><a href="/resource/list/CommunityResourceContacts">Community Resource Contacts</a></li>
+                <li><a href="/resource/list/DisabilityAssistance">Disability Assistance</a></li>
+                <li><a href="/resource/list/DrugsAndAlcohol" >Drug & Alcohol Resources</a></li>
+                <li><a href="/resource/list/EducationalResources" >Educational Resources</a></li>
+                <li><a href="/resource/list/EmergencyHousing">Emergency Housing</a></li>
+                <li><a href="/resource/list/EthincAndDiversityResources" >Ethnic & Diversity Resources</a></li>
+                <li><a href="/resource/list/FinancialAssistance" >Financial Assistance</a></li>
+                <li><a href="/resource/list/FoodPantries" >Food Pantries</a></li>
+                <li><a href="/resource/list/JobAssistance">Job Assistance</a></li>
+                <li><a href="/resource/list/LegalInformation" >Legal Information</a></li>
+                <li><a href="/resource/list/ParentingClasses" >Parenting Classes</a></li>
+                <li><a href="/resource/list/PetServices" >Pet Services</a></li>
+                <li><a href="/resource/list/TransportationResources">Transportation Resources</a></li>
             </ul>
         </div>
 
-        <body class="bg-info" style="background-color:#45b249 !important;padding:0 20px 20px 20px; ">
+          <body class="bg-info" style="background-color:#45b249 !important; padding-bottom: 20px;">
          <hr>
             <div class="row">
-                <div class="col-md-10 offset-md-1" style="background-color: #fafafa;margin-top: 25px;padding:10px; border-radius:20px; box-shadow: -1px 0px 5px 1px green;">
+                <div class="col-md-10 offset-md-1" style="background-color: #fafafa;margin-top: 25px; border-radius:20px; box-shadow: -1px 0px 5px 1px green;">
                     {{{body}}}
                 </div>
             </div>
@@ -65,12 +65,12 @@
 //Check if navbar is expanded or minimized and handle
 onload=$('#navbar-toggle').click(function() {
     if (state == "expanded") {
-        $('.sidebar').css('margin-left', '-230px');
+        $('.sidebar').css('margin-left', '-211px');
         $('.sidebar-nav li a').css('color', 'hsla(120, 87%, 30%, 1)')
         state = "minimized";
     } else {
         if (state == "minimized") {
-            $('.sidebar').css('margin-left', '-20px');
+            $('.sidebar').css('margin-left', '-3px');
             $('.sidebar-nav li a').css('color', 'white')
             state = "expanded";
         }
