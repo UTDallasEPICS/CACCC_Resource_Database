@@ -1,7 +1,5 @@
-body{
-    overflow-x: hidden;
-  }
-  .sidebar {
+.sidebar {
+    color: #FFF;
     width: 253px;
     height: 100vh;
     position: fixed;
@@ -10,11 +8,7 @@ body{
     transition: margin .5s;
     list-style: none;
     top:0;
-    overflow-y: scroll;
-    background: hsla(120, 87%, 30%, 1);
-}
-.sidebar::-webkit-scrollbar {
-    display: none;
+    overflow: hidden;
 }
 #navbar-toggle {
     cursor: pointer;
@@ -26,9 +20,6 @@ body{
 .sidebar-nav li{
   margin-right: 10px;
 }
-.sidebar-nav li a{
-color: hsla(120, 87%, 30%, 1);
-}
 .btn-secondary
 {
   background-color: black;
@@ -36,15 +27,20 @@ color: hsla(120, 87%, 30%, 1);
 ul {
   list-style: none;
   overflow: hidden;
+  background-color: black;
   top: 0;
   width: 100%;
 }
 li a {
   display: block;
-  color: hsla(120, 87%, 11%, 1);;
+  color: white;
   text-decoration: none;
   margin-top: 10px;
   margin-left: -30px;
+}
+.resourceTypes{
+  margin-top: 18.6px;
+  /* padding-bottom: 3px; */
 }
 
 .search[type=text] {

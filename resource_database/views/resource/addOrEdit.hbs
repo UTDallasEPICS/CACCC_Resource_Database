@@ -1,137 +1,174 @@
+<link rel="stylesheet" type="text/css" href="/styles/addOrEdit.css">
+{{#if resource}}
+<h3>Edit Resource</h3>
+{{else}}
 <h3>Add Resource</h3>
-<form action="/resource" method="POST" autocomplete="off" >
-    <input type="hidden" name="_id" value="{{resource._id}}">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label style="font-weight: bold;";>Resource Type</label>
-        <input type = "text" class = "form-control" placeholder="Resource Type" list="resourceTypes" name="resourceType" value="{{resource.resourceType}}">
-          <datalist id="resourceTypes">
-            <option value="Adoption Services">
-            <option value="Basic Care Groups">
-            <option value="Behavorial Health">
-            <option value="Child Care">
-            <option value="Child Support">
-            <option value="Community Resource Contacts">
-            <option value="Disability Assistance">
-            <option value="Drug and Alcohol Resources">
-            <option value="Educational Resources">
-            <option value="Emergency Housing">
-            <option value="Ethnic and Diversity Resources">
-            <option value="Financial Assistance">
-            <option value="Food Pantries">
-            <option value="Job Assistance">
-            <option value="Legal Information">
-            <option value="Parenting Classes">
-            <option value="Pet Services">
-            <option value="Transportation Resources">
-          </datalist>
-    </div>
-    <div class="form-group col-md-6">
-        <label style="font-weight: bold;">Name</label>
-        <input type="text" class="form-control" name="resourceName" placeholder="Name" value="{{resource.resourceName}}">
-    </div>
-  </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label style="font-weight: bold;">Phone Number(s)</label>
-            <input type="text" class="form-control" name="resourcePhone" placeholder="Phone Number(s)" value="{{resource.resourcePhone}}">
+{{/if}}
+<div style="padding:5px ">
+    {{#if resource}}
+    <a href="uploads/{{resource._id}}"><button type="submit" class="btn btn-secondary"
+            style="position: absolute; right: 15px; top: 17px;"><i class="fa fa-archive"></i> View
+            Attachments</button></a>
+    <button onclick="{{alertFails resource.resourceReferralFails resource.resourceReferrals}}" class="btn btn-secondary"
+        style="position: absolute; right: 15px; top: 87px;"><i class="fa fa-minus-circle"></i> View Referral
+        Failures</button>
+    {{/if}}
+    <form action="/resource" method="POST" autocomplete="off">
+        <input type="hidden" name="_id" value="{{resource._id}}">
+        {{#if resource}}
+        <div class="form-row">
+            <div class="form-group col-md-7">
+                <label style="font-weight: bold;">Submit a Referral</label>
+                <select name="resourceReferral" class="form-control">
+                    <option value="" selected>Select a result...</option>
+                    <option value="Successful">Successful</option>
+                    <option value="Client did not contact referral agency">Failed: Client did not contact referral
+                        agency
+                    </option>
+                    <option value="Agency lack of funding/resources">Failed: Agency lack of funding/resources</option>
+                    <option value="Zipcode not served">Failed: Zipcode not served</option>
+                    <option value="Lack of proper identification">Failed: Lack of proper identification</option>
+                    <option value="Household income">Failed: Household income</option>
+                    <option value="Lack of Medical or prescription insurance">Failed: Lack of Medical or prescription
+                        insurance
+                    </option>
+                    <option value="Barrier related to household member [Behavior, Disability, High-risk youth]">Failed:
+                        Barrier related to household member [Behavior, Disability, High-risk youth]
+                    </option>
+                    <option value="Failed required testing">Failed: Required testing</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group col-md-4">
-            <label style="font-weight: bold;">Website</label>
-            <input type="text" class="form-control" name="resourceWebsite" placeholder="Website" value="{{resource.resourceWebsite}}">
+        {{/if}}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label style="font-weight: bold;">Resource Type</label>
+                <select name="resourceType" class="form-control">
+                    {{selectedDropDown resource.resourceTypeDisplay types}}
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label style="font-weight: bold;">Name</label>
+                <input type="text" class="form-control" name="resourceName" placeholder="Name"
+                    value="{{resource.resourceName}}">
+            </div>
         </div>
-        <div class="form-group col-md-4">
-              <label style="font-weight: bold;">Hours of Operation</label>
-              <input type="text" class="form-control" name="resourceHours" placeholder="Hours of Operation" value="{{resource.resourceHours}}">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label style="font-weight: bold;">Phone Number(s)</label>
+                <input type="text" class="form-control" name="resourcePhone" placeholder="Phone Number(s)"
+                    value="{{resource.resourcePhone}}">
+            </div>
+            <div class="form-group col-md-4">
+                <label style="font-weight: bold;">Website</label>
+                <input type="text" class="form-control" name="resourceWebsite" placeholder="Website"
+                    value="{{resource.resourceWebsite}}">
+            </div>
+            <div class="form-group col-md-4">
+                <label style="font-weight: bold;">Hours of Operation</label>
+                <input type="text" class="form-control" name="resourceHours" placeholder="Hours of Operation"
+                    value="{{resource.resourceHours}}">
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-5">
-            <label style="font-weight: bold;">Address</label>
-            <input type="text" class="form-control" name="resourceAddress" placeholder="Address" value="{{resource.resourceAddress}}">
-      </div>
-      <div class="form-group col-md-3">
-          <label style="font-weight: bold;">City</label>
-          <input type="text" class="form-control" name="resourceCity" placeholder="City" value="{{resource.resourceCity}}">
-      </div>
-      <div class="form-group col-md-2">
-            <label style="font-weight: bold;">State</label>
-            <input type = "text" class = "form-control" placeholder="State" list="states" name="resourceState" value="{{resource.resourceState}}">
-              <datalist id="states">
-                <option value="Texas">
-                <option value="Alabama">
-                <option value="Alaska">
-                <option value="Arizona">
-                <option value="Arkansas">
-                <option value="California">
-                <option value="Colorado">
-                <option value="Connecticut">
-                <option value="Delaware">
-                <option value="DC">
-                <option value="Florida">
-                <option value="Georgia">
-                <option value="Hawaii">
-                <option value="Idaho">
-                <option value="Illinois">
-                <option value="Indiana">
-                <option value="Iowa">
-                <option value="Kansas">
-                <option value="Kentucky">
-                <option value="Louisiana">
-                <option value="Maine">
-                <option value="Maryland">
-                <option value="Massachusetts">
-                <option value="Michigan">
-                <option value="Minnesota">
-                <option value="Mississippi">
-                <option value="Missouri">
-                <option value="Montana">
-                <option value="Nebraska">
-                <option value="Nevada">
-                <option value="New Hampshire">
-                <option value="New Jersey">
-                <option value="New Mexico">
-                <option value="New York">
-                <option value="North Carolina">
-                <option value="North Dakota">
-                <option value="Ohio">
-                <option value="Oklahoma">
-                <option value="Oregon">
-                <option value="Pennsylvania">
-                <option value="Rhode Island">
-                <option value="South Carolina">
-                <option value="South Dakota">
-                <option value="Tennessee">
-                <option value="Utah">
-                <option value="Vermont">
-                <option value="Virginia">
-                <option value="Washington">
-                <option value="West Virginia">
-                <option value="Wisconsin">
-                <option value="Wyoming">
-              </datalist>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label style="font-weight: bold;">Address</label>
+                <input type="text" class="form-control" name="resourceAddress" placeholder="Address"
+                    value="{{resource.resourceAddress}}">
+            </div>
+            <div class="form-group col-md-3">
+                <label style="font-weight: bold;">City</label>
+                <input type="text" class="form-control" name="resourceCity" placeholder="City"
+                    value="{{resource.resourceCity}}">
+            </div>
+            <div class="form-group col-md-2">
+                <label style="font-weight: bold;">State</label>
+                <input type="text" class="form-control" placeholder="State" list="states" name="resourceState"
+                    value="{{resource.resourceState}}">
+                <datalist id="states">
+                    <option value="Texas">
+                    <option value="Alabama">
+                    <option value="Alaska">
+                    <option value="Arizona">
+                    <option value="Arkansas">
+                    <option value="California">
+                    <option value="Colorado">
+                    <option value="Connecticut">
+                    <option value="Delaware">
+                    <option value="DC">
+                    <option value="Florida">
+                    <option value="Georgia">
+                    <option value="Hawaii">
+                    <option value="Idaho">
+                    <option value="Illinois">
+                    <option value="Indiana">
+                    <option value="Iowa">
+                    <option value="Kansas">
+                    <option value="Kentucky">
+                    <option value="Louisiana">
+                    <option value="Maine">
+                    <option value="Maryland">
+                    <option value="Massachusetts">
+                    <option value="Michigan">
+                    <option value="Minnesota">
+                    <option value="Mississippi">
+                    <option value="Missouri">
+                    <option value="Montana">
+                    <option value="Nebraska">
+                    <option value="Nevada">
+                    <option value="New Hampshire">
+                    <option value="New Jersey">
+                    <option value="New Mexico">
+                    <option value="New York">
+                    <option value="North Carolina">
+                    <option value="North Dakota">
+                    <option value="Ohio">
+                    <option value="Oklahoma">
+                    <option value="Oregon">
+                    <option value="Pennsylvania">
+                    <option value="Rhode Island">
+                    <option value="South Carolina">
+                    <option value="South Dakota">
+                    <option value="Tennessee">
+                    <option value="Utah">
+                    <option value="Vermont">
+                    <option value="Virginia">
+                    <option value="Washington">
+                    <option value="West Virginia">
+                    <option value="Wisconsin">
+                    <option value="Wyoming">
+                </datalist>
+            </div>
+            <div class="form-group col-md-2">
+                <label style="font-weight: bold;">Zipcode</label>
+                <input type="text" class="form-control" name="resourceZip" placeholder="Zipcode"
+                    value="{{resource.resourceZip}}">
+            </div>
         </div>
-        <div class="form-group col-md-2">
-            <label style="font-weight: bold;">Zipcode</label>
-            <input type="text" class="form-control" name="resourceZip" placeholder="Zipcode" value="{{resource.resourceZip}}">
-        </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-            <label style="font-weight: bold;">Link</label>
-            <textarea style="resize:none; height:180px"class="form-control" name="resourceLink" placeholder="Links to any files" value="{{resource.resourceLink}}">{{resource.resourceLink}}</textarea>
-      </div>
-    <div class="form-group col-md-6">
-            <label style="font-weight: bold;">Resource Description</label>
-            <textarea style="resize:none; height:180px" class="form-control" name="resourceServices" placeholder="Resource Description" value="{{resource.resourceServices}}">{{resource.resourceServices}}</textarea>
-    </div>
-  <div id = "lastRow">
-    <div class="form-row">
-      <div class="form-group" style="width:100%; display:flex; justify-content:center;">
-        <div style="padding:5px ">  <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button></div>
-          <div style="padding:5px"><a class="btn btn-secondary" href="/resource/list"><i class="fa fa-list-alt"></i> View All</a></div>
-      </div>
-    </div>
-  </div>
-</form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label style="font-weight: bold;">Link</label>
+                <textarea style="resize:none; height:180px" class="form-control" name="resourceLink"
+                    placeholder="Related Links" value="{{resource.resourceLink}}">{{resource.resourceLink}}</textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label style="font-weight: bold;">Resource Description</label>
+                <textarea style="resize:none; height:180px" class="form-control" name="resourceServices"
+                    placeholder="Resource Description"
+                    value="{{resource.resourceServices}}">{{resource.resourceServices}}</textarea>
+            </div>
+        </div>
+
+        <div id="lastRow">
+            <div class="form-row">
+                <div class="form-group" style="width:100%; display:flex; justify-content:center;">
+                    <div style="padding:5px "> <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>
+                            Submit</button></div>
+                    <div style="padding:5px"><a class="btn btn-secondary" href="/resource/list"><i
+                                class="fa fa-list-alt"></i> View All</a></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

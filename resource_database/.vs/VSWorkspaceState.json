@@ -1,0 +1,21 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\controller",
+<<<<<<< HEAD
+    "\\js",
+=======
+>>>>>>> 47f7468e31908565b8df3f9c827e2fa3c0a607ae
+    "\\models",
+    "\\styles",
+    "\\views",
+    "\\views\\layouts",
+    "\\views\\resource"
+  ],
+<<<<<<< HEAD
+  "SelectedNode": "\\server.js",
+=======
+  "SelectedNode": "\\styles\\list.css",
+>>>>>>> 47f7468e31908565b8df3f9c827e2fa3c0a607ae
+  "PreviewInSolutionExplorer": false
+}

@@ -2,28 +2,17 @@
     cursor:pointer;
     background:#AAA;
 }
-
 table
 {
-    width: 100%;
-    word-wrap: break-word;
-    overflow: hidden;
+    table-layout: fixed;
+    word-wrap: normal;
 }
 
 .extraInfo {
-  visibility: hidden;
-  width: 200px;
-  background-color: rgb(59, 175, 146);
-  color: #000;
-  text-align: center;
-  border-radius: 6px;
-  padding: 10px 10px;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
+    display: none;
 }
 
 p:hover .extraInfo {
-  visibility: visible;
+  transition-timing-function: linear;
+  display: inline-block;
 }
