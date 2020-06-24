@@ -31,9 +31,11 @@ process.argv.forEach((val, index, array) => {
     console.log("db path set to: " + array[index + 1]);
   }
   //makes us not start a mongo process ourselves
-  if (val == "-dontStartMongo") {
-    startMongo = false;
-    console.log("startMongo set to: false");
+  if (val == "-dontStartMongo" && process.argv.length > index + 1) {
+
+    array[index + 1] = array[index + 1].replace(/"/, ''); //removes all quotes for true/false parsing
+    startMongo = (array[index + 1] == "false");
+    console.log("startMongo set to: " + startMongo);
   }
 });
 //run mongoDB executable
