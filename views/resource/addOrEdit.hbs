@@ -1,44 +1,44 @@
 <link rel="stylesheet" type="text/css" href="/styles/addOrEdit.css">
 {{#if resource}}
-<h3>Edit Resource</h3>
+    <h3>Edit Resource</h3>
 {{else}}
-<h3>Add Resource</h3>
+    <h3>Add Resource</h3>
 {{/if}}
 <div style="padding:5px ">
     {{#if resource}}
-    <a href="uploads/{{resource._id}}"><button type="submit" class="btn btn-secondary"
-            style="position: absolute; right: 15px; top: 17px;"><i class="fa fa-archive"></i> View
-            Attachments</button></a>
-    <button onclick="{{alertFails resource.resourceReferralFails resource.resourceReferrals}}" class="btn btn-secondary"
-        style="position: absolute; right: 15px; top: 87px;"><i class="fa fa-minus-circle"></i> View Referral
-        Failures</button>
+        <a href="uploads/{{resource._id}}"><button type="submit" class="btn btn-secondary"
+                style="position: absolute; right: 15px; top: 17px;"><i class="fa fa-archive"></i> View
+                Attachments</button></a>
+        <button onclick="{{alertFails resource.resourceReferralFails resource.resourceReferrals}}" class="btn btn-secondary"
+            style="position: absolute; right: 15px; top: 87px;"><i class="fa fa-minus-circle"></i> View Referral
+            Failures</button>
     {{/if}}
     <form action="/resource" method="POST" autocomplete="off">
         <input type="hidden" name="_id" value="{{resource._id}}">
         {{#if resource}}
-        <div class="form-row">
-            <div class="form-group col-md-7">
-                <label style="font-weight: bold;">Submit a Referral</label>
-                <select name="resourceReferral" class="form-control">
-                    <option value="" selected>Select a result...</option>
-                    <option value="Successful">Successful</option>
-                    <option value="Client did not contact referral agency">Failed: Client did not contact referral
-                        agency
-                    </option>
-                    <option value="Agency lack of funding/resources">Failed: Agency lack of funding/resources</option>
-                    <option value="Zipcode not served">Failed: Zipcode not served</option>
-                    <option value="Lack of proper identification">Failed: Lack of proper identification</option>
-                    <option value="Household income">Failed: Household income</option>
-                    <option value="Lack of Medical or prescription insurance">Failed: Lack of Medical or prescription
-                        insurance
-                    </option>
-                    <option value="Barrier related to household member [Behavior, Disability, High-risk youth]">Failed:
-                        Barrier related to household member [Behavior, Disability, High-risk youth]
-                    </option>
-                    <option value="Failed required testing">Failed: Required testing</option>
-                </select>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label style="font-weight: bold;">Submit a Referral</label>
+                    <select name="resourceReferral" class="form-control">
+                        <option value="" selected>Select a result...</option>
+                        <option value="Successful">Successful</option>
+                        <option value="Client did not contact referral agency">Failed: Client did not contact referral
+                            agency
+                        </option>
+                        <option value="Agency lack of funding/resources">Failed: Agency lack of funding/resources</option>
+                        <option value="Zipcode not served">Failed: Zipcode not served</option>
+                        <option value="Lack of proper identification">Failed: Lack of proper identification</option>
+                        <option value="Household income">Failed: Household income</option>
+                        <option value="Lack of Medical or prescription insurance">Failed: Lack of Medical or prescription
+                            insurance
+                        </option>
+                        <option value="Barrier related to household member [Behavior, Disability, High-risk youth]">Failed:
+                            Barrier related to household member [Behavior, Disability, High-risk youth]
+                        </option>
+                        <option value="Failed required testing">Failed: Required testing</option>
+                    </select>
+                </div>
             </div>
-        </div>
         {{/if}}
         <div class="form-row">
             <div class="form-group col-md-6">

@@ -19,14 +19,22 @@
 <div class="sidebar" style="margin-left: -230px;">
         <ul class="sidebar-nav">
                 <li>
-                        <a id="navbar-toggle">Close <i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i></a>
+                        <a id="navbar-toggle">Close 
+                                <i class="fa fa-bars menu-icon fa-2x" aria-hidden="true"></i>
+                        </a>
                 </li>
                 <li>
-                        <a style="text-decoration: none;" href="/resource">Add New Resource<i
-                                        class="fa fa-plus menu-icon fa-2x"></i></a>
+                        <a style="text-decoration: none;" href="/resource">Add New Resource
+                                <i class="fa fa-plus menu-icon fa-2x"></i>
+                        </a>
                 </li>
-                <li><a style="text-decoration: none;" href="/resource/list/"> Resource Book <i
-                                        class="fa fa-book menu-icon fa-2x"></i></a></li><br>
+                <li>
+                        <a style="text-decoration: none;" href="/resource/list/"> Resource Book 
+                                <i class="fa fa-book menu-icon fa-2x"></i>
+                        </a>
+                </li>
+                <br>
+                
                 <select class="form-control" style="margin-left: -43px;"
                         onchange="this.options[this.selectedIndex].value != '__filterby' && (window.location = '/resource/list/' + this.options[this.selectedIndex].value);">
                         <option value="__filterby" selected>Filter by...</option>
@@ -54,7 +62,8 @@
                 if (state == "expanded") {
                         $('.sidebar').css('margin-left', '-230px');
                         state = "minimized";
-                } else {
+                } 
+                else {
                         if (state == "minimized") {
                                 $('.sidebar').css('margin-left', '-20px');
                                 $('.li a').css('color', 'black');

@@ -9,18 +9,19 @@ const fs = require('fs');
 const path = require('path');
 var uploadDir = process.uploadDir;
 
+// processing resource types array (removing spaces and forcing lowercase)
 var processedResourceTypes = [];
-//processing resource types array (removing spaces and forcing lowercase)
-//we dont do this in the array to begin with for readability on the dropdown box
+// we dont do this in the array to begin with for readability on the dropdown box
 process.resourceTypes.forEach(value => {
   processedResourceTypes.push(processResourceType(value));
 });
 
 function processResourceType(type) {
-  return type.replace(/ /g, '').toLowerCase(); //removing all spaces from the requested type & making it non case sensitive
+  // removing all spaces from the requested type & making it non case sensitive
+  return type.replace(/ /g, '').toLowerCase(); 
 }
 
-//GET request for Uploads
+// GET request for Uploads
 router.get('/uploads/:id', (req, res) => {
   Resource.findById(req.params.id, (err, doc) => {
     if (!err) {
@@ -31,9 +32,9 @@ router.get('/uploads/:id', (req, res) => {
     }
   });
 });
-//POST request for Uploads (multipart form needs formidable)
-//attachments are saved in the path given by the commandline arg (deafult is "%appdata%/resourceDatabase/assets/attachments")
-//each resource creates a folder in that directory with its id as the name
+// POST request for Uploads (multipart form needs formidable)
+// attachments are saved in the path given by the commandline arg (deafult is "%appdata%/resourceDatabase/assets/attachments")
+// each resource creates a folder in that directory with its id as the name
 router.post('/uploads', (req, res) => {
   var id;
   var filePath;
@@ -61,15 +62,17 @@ router.post('/uploads', (req, res) => {
     const tmpFile = files.fileUpload.path;
     fs.renameSync(tmpFile, filePath);
 
-    //add the new uploaded filename to the record
+    // add the new uploaded filename to the record
     Resource.findById(id, (err, resource) => {
       if (err) {
         console.log("error during attachment resource finding (id: " + id + "): " + err);
       }
       else if (resource == null) {
         console.log("resource not found");
-      } else {
-        resource.resourceFiles.set(files.fileUpload.name.replace(".", ":"), filePath); //mongoose maps cannot have '.' in a key
+      } 
+      else {
+        // mongoose maps cannot have '.' in a key
+        resource.resourceFiles.set(files.fileUpload.name.replace(".", ":"), filePath); 
         resource.save((err, doc) => {
           if (err)
             console.log('Error during attachment insertion: ' + err);

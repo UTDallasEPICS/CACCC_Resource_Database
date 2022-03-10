@@ -1,6 +1,6 @@
 const handlebars = require('handlebars');
 
-//used for displaying categories in dropdowns, fail reasons, etc.
+// used for displaying categories in dropdowns, fail reasons, etc.
 process.resourceTypes = [
     "Behavioral And Mental Health Care",
     "Child Care And After School",
@@ -24,7 +24,7 @@ process.resourceTypes = [
     "Senior Services",
     "Transportation",
 ];
-//for use in the uploads.hbs renderer
+// for use in the uploads.hbs renderer
 handlebars.registerHelper("downloads", (map, id) => {
     var body = "";
     for (const key of map.keys()) {
@@ -33,7 +33,7 @@ handlebars.registerHelper("downloads", (map, id) => {
     }
     return new handlebars.SafeString(body);
 });
-//for use in the addOrEdit dropdown
+// for use in the addOrEdit dropdown
 handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     var body = "";
     list.forEach(element => {
@@ -45,7 +45,7 @@ handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     });
     return new handlebars.SafeString(body);
 });
-//for use in the mainLayout.hbs dropdown
+// for use in the mainLayout.hbs dropdown
 handlebars.registerHelper("typesDropdown", () => {
     var body = "";
     process.resourceTypes.forEach(element => {

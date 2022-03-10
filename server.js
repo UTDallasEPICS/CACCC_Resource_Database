@@ -1,6 +1,8 @@
 // initialize various services
 require('./models/db');
-require('./helpers'); //initialize handlebars helpers
+// initialize handlebars helpers
+require('./helpers'); 
+
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
