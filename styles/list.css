@@ -2,8 +2,8 @@
     cursor:pointer;
     background:#AAA;
 }
-table
-{
+
+table {
     table-layout: fixed;
     word-wrap: normal;
 }
@@ -13,6 +13,6 @@ table
 }
 
 p:hover .extraInfo {
-  transition-timing-function: linear;
-  display: inline-block;
+    transition-timing-function: linear;
+    display: inline-block;
 }
