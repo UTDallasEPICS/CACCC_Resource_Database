@@ -1,3 +1,4 @@
+// canjust move this into server.js
 const mongoose = require('mongoose');
 
 // connect to the local mongoDB at port 27017
