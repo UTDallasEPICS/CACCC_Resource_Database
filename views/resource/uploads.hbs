@@ -3,12 +3,14 @@
 <form action="/resource/uploads" method="POST" autocomplete="off" enctype="multipart/form-data">
     <input type="hidden" name="_id" value="{{resource._id}}" />
     <input type="file" class="fa-database" name="fileUpload" />
+
     <div style="padding:5px "> 
         <button type="submit" class="btn btn-info">
             <i class="fa fa-database"></i> 
             Submit
         </button>
     </div>
+
     <table class="table table-striped sortable">
         <thread>
             <tr>
@@ -19,6 +21,7 @@
                 </th>
             </tr>
         </thread>
+        
         <tbody id="tbody">
             {{downloads resource.resourceFiles resource._id}}
         </tbody>

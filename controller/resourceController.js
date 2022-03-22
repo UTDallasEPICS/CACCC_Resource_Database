@@ -200,8 +200,6 @@ function updateRecord(req, res) {
         console.log('Error during record update : ' + err);
     }
   });
-
-
 }
 
 // GET request for the full list of resources
@@ -272,24 +270,29 @@ router.get('/delete/:id', (req, res) => {
     if (!err) {
       //delete attachments folder for it too
       const folder = uploadDir + "/" + req.params.id;
+      
       //we have to delete all files in the directory before removing it.
       //there will be no nested folders, so only need to worry about files.
       fs.readdirSync(folder).forEach(value => {
         try {
           const filePath = path.join(folder, value);
           fs.unlinkSync(filePath);
-        } catch (error) {
+        } 
+        catch (error) {
           console.log("error in deleting resource file (" + path.join(folder, value) + "): " + error);
         }
       });
       try {
         fs.rmdirSync(folder);
-      } catch (error) {
+      } 
+      catch (error) {
         console.log("error in removing resource directory (" + folder + "): " + error);
       }
       res.redirect('/resource/list');
     }
-    else { console.log('Error in resource delete :' + err); }
+    else { 
+      console.log('Error in resource delete :' + err); 
+    }
   });
 });
 

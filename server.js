@@ -1,5 +1,6 @@
 // initialize various services
 require('./models/db');
+
 // initialize handlebars helpers
 require('./helpers'); 
 
@@ -22,7 +23,9 @@ app.use(bodyparser.json());
 app.set('views', path.join(__dirname, '/views/'));
 
 // use express's object to use the handlebars engine for rendering the front-end
-app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/' }));
+app.engine('hbs', exphbs({ 
+  extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/' 
+ }));
 app.set('view engine', 'hbs');
 
 // express listens on port 3000 of localhost

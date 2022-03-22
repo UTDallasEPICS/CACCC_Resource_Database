@@ -5,11 +5,14 @@
         <tr>
             <th class="sortableHeader" style="width:9%"
                 onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+
                 Type
                 <i class="fa fa-caret-up"></i> 
             </th>
+
             <th class="sortableHeader" style="width:12%"
                 onclick="sort_table(tbody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+
                 Name 
                 <i class="fa fa-caret-up"></i>
             </th>
@@ -19,16 +22,21 @@
 
             <th class="sortableHeader" style="width:6%"
                 onclick="sort_table(tbody, 4, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+
                 City 
                 <i class="fa fa-caret-up"></i>
             </th>
+
             <th class="sortableHeader" style="width:5%"
                 onclick="sort_table(tbody, 5, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+
                 State 
                 <i class="fa fa-caret-up"></i>
             </th>
+
             <th class="sortableHeader" style="width:7%"
                 onclick="sort_table(tbody, 6, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+
                 Zipcode 
                 <i class="fa fa-caret-up"></i>
             </th>
@@ -42,6 +50,7 @@
                 Referrals 
                 <i class="fa fa-caret-up"></i>
             </th>
+
             <th style="width:4%" class="sortableHeader"
                 onclick="sort_table(tbody, 11, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
                 Success 
@@ -53,12 +62,14 @@
         {{#each list}}
             <tr style="word-wrap: break-word;">
                 <td>{{this.resourceTypeDisplay}}</td>
+                
                 <td>{{this.resourceName}}
                     <p style="font-size: small"> 
                         Show Info 
                         <span class="extraInfo">{{this.resourceServices}}</span>
                     </p>
                 </td>
+
                 <td>{{this.resourcePhone}}</td>
                 <td>{{this.resourceAddress}}</td>
                 <td>{{this.resourceCity}}</td>
@@ -69,12 +80,14 @@
                 <td>{{this.resourceLink}}</td>
                 <td>{{this.resourceReferrals}}</td>
                 <td>{{this.resourceSuccessPercent}}</td>
+
                 <td style="display:flex; justify-content:center; align-items:center;">
                     <a href="/resource/{{this._id}}">
                         <i class="fa fa-pencil fa-2x" style="color:black; margin-right:10px;"
                             aria-hidden="true">
                         </i>
                     </a>
+
                     <a href="/resource/delete/{{this._id}}"
                         onclick="return confirm('Are you sure to delete this record ?');">
                         <i class="fa fa-trash fa-2x"
