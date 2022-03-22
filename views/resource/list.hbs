@@ -4,32 +4,49 @@
     <thead>
         <tr>
             <th class="sortableHeader" style="width:9%"
-                onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Type<i
-                    class="fa fa-caret-up"></i> </th>
+                onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                Type
+                <i class="fa fa-caret-up"></i> 
+            </th>
             <th class="sortableHeader" style="width:12%"
-                onclick="sort_table(tbody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Name <i
-                    class="fa fa-caret-up"></i></th>
+                onclick="sort_table(tbody, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                Name 
+                <i class="fa fa-caret-up"></i>
+            </th>
+
             <th style="width:10%">Phone </th>
             <th style="width:10%">Address </th>
+
             <th class="sortableHeader" style="width:6%"
-                onclick="sort_table(tbody, 4, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">City <i
-                    class="fa fa-caret-up"></i></th>
+                onclick="sort_table(tbody, 4, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                City 
+                <i class="fa fa-caret-up"></i>
+            </th>
             <th class="sortableHeader" style="width:5%"
-                onclick="sort_table(tbody, 5, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">State <i
-                    class="fa fa-caret-up"></i></th>
+                onclick="sort_table(tbody, 5, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                State 
+                <i class="fa fa-caret-up"></i>
+            </th>
             <th class="sortableHeader" style="width:7%"
-                onclick="sort_table(tbody, 6, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Zipcode <i
-                    class="fa fa-caret-up"></i></th>
+                onclick="sort_table(tbody, 6, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                Zipcode 
+                <i class="fa fa-caret-up"></i>
+            </th>
+
             <th style="width:7%">Hours</th>
             <th style="width:10%">Website</th>
             <th style="width:10%">Links</th>
+
             <th style="width:6%" class="sortableHeader"
-                onclick="sort_table(tbody, 10, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Referrals <i
-                    class="fa fa-caret-up"></i></th>
+                onclick="sort_table(tbody, 10, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                Referrals 
+                <i class="fa fa-caret-up"></i>
+            </th>
             <th style="width:4%" class="sortableHeader"
-                onclick="sort_table(tbody, 11, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Success <i
-                    class="fa fa-caret-up"></i></th>
-            <th></th>
+                onclick="sort_table(tbody, 11, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                Success 
+                <i class="fa fa-caret-up"></i>
+            </th>
         </tr>
     </thead>
     <tbody id="tbody">
@@ -37,7 +54,10 @@
             <tr style="word-wrap: break-word;">
                 <td>{{this.resourceTypeDisplay}}</td>
                 <td>{{this.resourceName}}
-                    <p style="font-size: small"> Show Info <span class="extraInfo">{{this.resourceServices}}</span></p>
+                    <p style="font-size: small"> 
+                        Show Info 
+                        <span class="extraInfo">{{this.resourceServices}}</span>
+                    </p>
                 </td>
                 <td>{{this.resourcePhone}}</td>
                 <td>{{this.resourceAddress}}</td>
