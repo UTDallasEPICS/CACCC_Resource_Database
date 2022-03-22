@@ -32,6 +32,7 @@ router.get('/uploads/:id', (req, res) => {
     }
   });
 });
+
 // POST request for Uploads (multipart form needs formidable)
 // attachments are saved in the path given by the commandline arg (deafult is "%appdata%/resourceDatabase/assets/attachments")
 // each resource creates a folder in that directory with its id as the name
@@ -41,6 +42,7 @@ router.post('/uploads', (req, res) => {
   if (!fs.existsSync("tmp")) {
     fs.mkdirSync("tmp");
   }
+
   const form = formidable.IncomingForm({
     keepExtensions: true,
     uploadDir: "tmp/"
@@ -135,6 +137,7 @@ function insertRecord(req, res) {
   resource.resourceReferralFails = {};
   resource.resourceFiles = {};
   resource.resourceSearchData = req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
+  
   resource.save((err, doc) => {
     if (!err)
       res.redirect('resource/list');
