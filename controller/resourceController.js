@@ -11,6 +11,7 @@ var uploadDir = process.uploadDir;
 
 // processing resource types array (removing spaces and forcing lowercase)
 var processedResourceTypes = [];
+
 // we dont do this in the array to begin with for readability on the dropdown box
 process.resourceTypes.forEach(value => {
   processedResourceTypes.push(processResourceType(value));
@@ -137,7 +138,7 @@ function insertRecord(req, res) {
   resource.resourceReferralFails = {};
   resource.resourceFiles = {};
   resource.resourceSearchData = req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
-  
+
   resource.save((err, doc) => {
     if (!err)
       res.redirect('resource/list');
