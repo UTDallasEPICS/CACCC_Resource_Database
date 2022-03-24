@@ -29,8 +29,14 @@ app.set('view engine', 'hbs');
 // express listens on port 3000 of localhost
 app.listen(3000, async () => {
   console.log('Express server started at port : 3000');
-  if (!await fs.stat("tmp")) {
-    await fs.mkdir("tmp");
+  try {
+    await fs.stat("tmp")
+  } 
+  catch (e) {
+    if (e.code == "ENOENT") 
+      await fs.mkdir("tmp");
+    else 
+      throw e
   }
 });
 
