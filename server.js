@@ -8,6 +8,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyparser = require('body-parser');
 const resourceController = require('./controller/resourceController');
+const fs = require('fs/promises');
 const targetBaseUrl = '/resource/list';
 var app = express();
 var router = express.Router();
@@ -26,8 +27,11 @@ app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsD
 app.set('view engine', 'hbs');
 
 // express listens on port 3000 of localhost
-app.listen(3000, () => {
+app.listen(3000, async () => {
   console.log('Express server started at port : 3000');
+  if (!await fs.stat("tmp")) {
+    await fs.mkdir("tmp");
+  }
 });
 
 // use express's object to use resourceController as the default resource hyperlink

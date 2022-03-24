@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Resource = mongoose.model('resource');
 const formidable = require('formidable');
 var http = require('http');
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
 var uploadDir = process.uploadDir;
 
@@ -35,18 +35,16 @@ router.get('/uploads/:id', (req, res) => {
 // POST request for Uploads (multipart form needs formidable)
 // attachments are saved in the path given by the commandline arg (deafult is "%appdata%/resourceDatabase/assets/attachments")
 // each resource creates a folder in that directory with its id as the name
-router.post('/uploads', (req, res) => {
+router.post('/uploads', async (req, res) => {
   var id;
   var filePath;
-  if (!fs.existsSync("tmp")) {
-    fs.mkdirSync("tmp");
-  }
+  
   const form = formidable.IncomingForm({
     keepExtensions: true,
     uploadDir: "tmp/"
   });
 
-  form.parse(req, (err, fields, files) => {
+  form.parse(req, async (err, fields, files) => {
     if (err) {
       console.log("error during attachment form parsing: " + err);
       res.redirect('/uploads/' + id);
@@ -54,13 +52,13 @@ router.post('/uploads', (req, res) => {
     const uploadDirectory = uploadDir + "/" + fields._id;
     id = fields._id;
 
-    if (!fs.existsSync(uploadDirectory)) {
-      fs.mkdirSync(uploadDirectory);
+    if (!await fs.stat(uploadDirectory)) {
+      await fs.mkdir(uploadDirectory);
     }
 
     filePath = uploadDirectory + "/" + files.fileUpload.name;
     const tmpFile = files.fileUpload.path;
-    fs.renameSync(tmpFile, filePath);
+    await fs.rename(tmpFile, filePath);
 
     // add the new uploaded filename to the record
     Resource.findById(id, (err, resource) => {
@@ -268,22 +266,22 @@ router.get('/:id', (req, res) => {
 
 // GET request to delete the selected resource
 router.get('/delete/:id', (req, res) => {
-  Resource.findByIdAndRemove(req.params.id, (err, doc) => {
+  Resource.findByIdAndRemove(req.params.id, async (err, doc) => {
     if (!err) {
       //delete attachments folder for it too
       const folder = uploadDir + "/" + req.params.id;
       //we have to delete all files in the directory before removing it.
       //there will be no nested folders, so only need to worry about files.
-      fs.readdirSync(folder).forEach(value => {
+      await fs.readdir(folder).forEach( async value => {
         try {
           const filePath = path.join(folder, value);
-          fs.unlinkSync(filePath);
+          await fs.unlink(filePath);
         } catch (error) {
           console.log("error in deleting resource file (" + path.join(folder, value) + "): " + error);
         }
       });
       try {
-        fs.rmdirSync(folder);
+        await fs.rmdir(folder);
       } catch (error) {
         console.log("error in removing resource directory (" + folder + "): " + error);
       }
