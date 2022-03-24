@@ -133,6 +133,10 @@ function insertRecord(req, res) {
   resource.resourceReferralFails = {};
   resource.resourceFiles = {};
   resource.resourceSearchData = req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
+<<<<<<< HEAD
+=======
+  
+>>>>>>> parent of f7258cd (clean code)
   resource.save((err, doc) => {
     if (!err)
       res.redirect('resource/list');
