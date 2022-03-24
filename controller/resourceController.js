@@ -139,9 +139,12 @@ function insertRecord(req, res) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   
 >>>>>>> parent of f7258cd (clean code)
+=======
+>>>>>>> parent of 17a46ff (First attempt at async)
 =======
 >>>>>>> parent of 17a46ff (First attempt at async)
 =======
