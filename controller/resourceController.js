@@ -135,9 +135,12 @@ function insertRecord(req, res) {
   resource.resourceSearchData = req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   
 >>>>>>> parent of f7258cd (clean code)
+=======
+>>>>>>> parent of 17a46ff (First attempt at async)
 =======
 >>>>>>> parent of 17a46ff (First attempt at async)
   resource.save((err, doc) => {
