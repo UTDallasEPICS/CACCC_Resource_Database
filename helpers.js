@@ -24,6 +24,7 @@ process.resourceTypes = [
     "Senior Services",
     "Transportation",
 ];
+
 // for use in the uploads.hbs renderer
 handlebars.registerHelper("downloads", (map, id) => {
     var body = "";
@@ -33,6 +34,7 @@ handlebars.registerHelper("downloads", (map, id) => {
     }
     return new handlebars.SafeString(body);
 });
+
 // for use in the addOrEdit dropdown
 handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     var body = "";
@@ -45,6 +47,7 @@ handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     });
     return new handlebars.SafeString(body);
 });
+
 // for use in the mainLayout.hbs dropdown
 handlebars.registerHelper("typesDropdown", () => {
     var body = "";
@@ -53,6 +56,7 @@ handlebars.registerHelper("typesDropdown", () => {
     });
     return new handlebars.SafeString(body);
 });
+
 handlebars.registerHelper("alertFails", (dict, total) => {
     var output = "alert('Total Referrals: " + handlebars.escapeExpression(total) + "\\n";
     for (let key of dict.keys()) {

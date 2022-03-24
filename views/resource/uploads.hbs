@@ -3,16 +3,25 @@
 <form action="/resource/uploads" method="POST" autocomplete="off" enctype="multipart/form-data">
     <input type="hidden" name="_id" value="{{resource._id}}" />
     <input type="file" class="fa-database" name="fileUpload" />
-    <div style="padding:5px "> <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+
+    <div style="padding:5px "> 
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-database"></i> 
+            Submit
+        </button>
     </div>
+
     <table class="table table-striped sortable">
         <thread>
             <tr>
                 <th class="sortableHeader" style="width:100%"
-                    onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Attachments
-                    <i class="fa fa-caret-up"></i></th>
+                    onclick="sort_table(tbody, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">
+                    Attachments
+                    <i class="fa fa-caret-up"></i>
+                </th>
             </tr>
         </thread>
+        
         <tbody id="tbody">
             {{downloads resource.resourceFiles resource._id}}
         </tbody>
