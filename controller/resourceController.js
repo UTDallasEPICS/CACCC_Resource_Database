@@ -278,13 +278,15 @@ router.get('/delete/:id', (req, res) => {
         try {
           const filePath = path.join(folder, value);
           await fs.unlink(filePath);
-        } catch (error) {
+        } 
+        catch (error) {
           console.log("error in deleting resource file (" + path.join(folder, value) + "): " + error);
         }
       });
       try {
         await fs.rmdir(folder);
-      } catch (error) {
+      } 
+      catch (error) {
         console.log("error in removing resource directory (" + folder + "): " + error);
       }
       res.redirect('/resource/list');
