@@ -11,7 +11,6 @@ var uploadDir = process.uploadDir;
 
 // processing resource types array (removing spaces and forcing lowercase)
 var processedResourceTypes = [];
-
 // we dont do this in the array to begin with for readability on the dropdown box
 process.resourceTypes.forEach(value => {
   processedResourceTypes.push(processResourceType(value));
@@ -33,7 +32,6 @@ router.get('/uploads/:id', (req, res) => {
     }
   });
 });
-
 // POST request for Uploads (multipart form needs formidable)
 // attachments are saved in the path given by the commandline arg (deafult is "%appdata%/resourceDatabase/assets/attachments")
 // each resource creates a folder in that directory with its id as the name
@@ -135,7 +133,6 @@ function insertRecord(req, res) {
   resource.resourceReferralFails = {};
   resource.resourceFiles = {};
   resource.resourceSearchData = req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
-
   resource.save((err, doc) => {
     if (!err)
       res.redirect('resource/list');
@@ -201,6 +198,8 @@ function updateRecord(req, res) {
         console.log('Error during record update : ' + err);
     }
   });
+
+
 }
 
 // GET request for the full list of resources
@@ -271,7 +270,6 @@ router.get('/delete/:id', (req, res) => {
     if (!err) {
       //delete attachments folder for it too
       const folder = uploadDir + "/" + req.params.id;
-      
       //we have to delete all files in the directory before removing it.
       //there will be no nested folders, so only need to worry about files.
       await fs.readdir(folder).forEach( async value => {
@@ -291,9 +289,7 @@ router.get('/delete/:id', (req, res) => {
       }
       res.redirect('/resource/list');
     }
-    else { 
-      console.log('Error in resource delete :' + err); 
-    }
+    else { console.log('Error in resource delete :' + err); }
   });
 });
 
