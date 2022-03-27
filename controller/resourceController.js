@@ -7,7 +7,6 @@ const formidable = require('formidable');
 var http = require('http');
 const fs = require('fs/promises');
 const path = require('path');
-var uploadDir = process.uploadDir;
 
 // processing resource types array (removing spaces and forcing lowercase)
 var processedResourceTypes = [];
@@ -49,7 +48,7 @@ router.post('/uploads', async (req, res) => {
       console.log("error during attachment form parsing: " + err);
       res.redirect('/uploads/' + id);
     }
-    const uploadDirectory = uploadDir + "/" + fields._id;
+    const uploadDirectory = process.uploadDir + "/" + fields._id;
     id = fields._id;
 
     if (!await fs.stat(uploadDirectory)) {
@@ -270,7 +269,7 @@ router.get('/delete/:id', (req, res) => {
   Resource.findByIdAndRemove(req.params.id, async (err, doc) => {
     if (!err) {
       //delete attachments folder for it too
-      const folder = uploadDir + "/" + req.params.id;
+      const folder = process.uploadDir + "/" + req.params.id;
       //we have to delete all files in the directory before removing it.
       //there will be no nested folders, so only need to worry about files.
       await fs.readdir(folder).forEach( async value => {
