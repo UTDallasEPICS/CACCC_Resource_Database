@@ -120,24 +120,25 @@ router.post('/', (req, res) => {
 
 // method to insert record into the database
 function insertRecord(req, res) {
-  var resource = new Resource();
-  resource.resourceType = processResourceType(req.body.resourceType);
-  resource.resourceTypeDisplay = req.body.resourceType;
-  resource.resourceName = req.body.resourceName;
-  resource.resourcePhone = req.body.resourcePhone;
-  resource.resourceAddress = req.body.resourceAddress;
-  resource.resourceCity = req.body.resourceCity;
-  resource.resourceState = req.body.resourceState;
-  resource.resourceZip = req.body.resourceZip;
-  resource.resourceHours = req.body.resourceHours;
-  resource.resourceWebsite = req.body.resourceWebsite;
-  resource.resourceServices = req.body.resourceServices;
-  resource.resourceLink = req.body.resourceLink;
-  resource.resourceReferrals = 0;
-  resource.resourceSuccessPercent = "0%";
-  resource.resourceReferralFails = {};
-  resource.resourceFiles = {};
-  resource.resourceSearchData = req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
+  var resource = new Resource({
+      resourceTypeDisplay: req.body.resourceType,
+      resourceName: req.body.resourceName,
+      resourcePhone: req.body.resourcePhone,
+      resourceAddress: req.body.resourceAddress,
+      resourceCity: req.body.resourceCity,
+      resourceState: req.body.resourceState,
+      resourceZip: req.body.resourceZip,
+      resourceHours: req.body.resourceHours,
+      resourceWebsite: req.body.resourceWebsite,
+      resourceServices: req.body.resourceServices,
+      resourceLink: req.body.resourceLink,
+      resourceReferrals: 0,
+      resourceSuccessPercent: "0%",
+      resourceReferralFails: {},
+      resourceFiles: {},
+      resourceSearchData: req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity,
+    }
+  );
 
   resource.save((err, doc) => {
     if (!err)
@@ -159,7 +160,6 @@ function insertRecord(req, res) {
 // method to update a record in the database
 function updateRecord(req, res) {
   req.body.resourceSearchData = req.body.resourceAddress + " " + req.body.resourceWebsite + " " + req.body.resourceName + " " + req.body.resourceType + " " + req.body.resourceZip + " " + req.body.resourceCity;
-
 
   //updating all normal fields
   req.body.resourceTypeDisplay = req.body.resourceType;
