@@ -12,6 +12,7 @@ const fs = require('fs/promises');
 const targetBaseUrl = '/resource/list';
 var app = express();
 var router = express.Router();
+process.uploadDir = "tmp";
 
 // use bodyparser using express's app object
 app.use(bodyparser.urlencoded({

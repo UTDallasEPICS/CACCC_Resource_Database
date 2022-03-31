@@ -51,8 +51,14 @@ router.post('/uploads', async (req, res) => {
     const uploadDirectory = process.uploadDir + "/" + fields._id;
     id = fields._id;
 
-    if (!await fs.stat(uploadDirectory)) {
-      await fs.mkdir(uploadDirectory);
+    try {
+      await fs.stat(uploadDirectory)
+    } 
+    catch (e) {
+      if (e.code == "ENOENT") 
+        await fs.mkdir(uploadDirectory);
+      else 
+        throw e
     }
 
     filePath = uploadDirectory + "/" + files.fileUpload.name;
