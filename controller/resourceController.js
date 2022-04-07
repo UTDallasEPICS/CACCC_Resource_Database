@@ -7,6 +7,7 @@ const formidable = require('formidable');
 const http = require('http');
 const fs = require('fs/promises');
 const path = require('path');
+const { formattedOrderClause } = require('mongodb/lib/utils');
 
 // processing resource types array (removing spaces and forcing lowercase)
 const processedResourceTypes = [];
@@ -271,9 +272,12 @@ router.get('/delete/:id', (req, res) => {
     if (!err) {
       //delete attachments folder for it too
       const folder = process.uploadDir + "/" + req.params.id;
+
       //we have to delete all files in the directory before removing it.
       //there will be no nested folders, so only need to worry about files.
-      await fs.readdir(folder).forEach( async value => {
+      let fileNames = await fs.readdir(folder);
+      //await fs.readdir(folder).forEach( async value => { (Gives not a function error)
+      await filenames.forEach( async value => { //(Gives no such file or directory error)
         try {
           const filePath = path.join(folder, value);
           await fs.unlink(filePath);
@@ -295,5 +299,4 @@ router.get('/delete/:id', (req, res) => {
     }
   });
 });
-
 module.exports = router;
