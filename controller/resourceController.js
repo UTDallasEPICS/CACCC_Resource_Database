@@ -290,7 +290,9 @@ router.get('/delete/:id', (req, res) => {
       }
       res.redirect('/resource/list');
     }
-    else { console.log('Error in resource delete :' + err); }
+    else { 
+      console.log('Error in resource delete :' + err); 
+    }
   });
 });
 
