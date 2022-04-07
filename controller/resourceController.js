@@ -1,15 +1,15 @@
 // initializing various services
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
 const mongoose = require('mongoose');
 const Resource = mongoose.model('resource');
 const formidable = require('formidable');
-var http = require('http');
+const http = require('http');
 const fs = require('fs/promises');
 const path = require('path');
 
 // processing resource types array (removing spaces and forcing lowercase)
-var processedResourceTypes = [];
+const processedResourceTypes = [];
 // we dont do this in the array to begin with for readability on the dropdown box
 process.resourceTypes.forEach(value => {
   processedResourceTypes.push(processResourceType(value));
@@ -36,7 +36,6 @@ router.get('/uploads/:id', (req, res) => {
 // each resource creates a folder in that directory with its id as the name
 router.post('/uploads', async (req, res) => {
   var id;
-  var filePath;
   
   const form = formidable.IncomingForm({
     keepExtensions: true,
@@ -55,13 +54,13 @@ router.post('/uploads', async (req, res) => {
       await fs.stat(uploadDirectory)
     } 
     catch (e) {
-      if (e.code == "ENOENT") 
+      if (e.code === "ENOENT") 
         await fs.mkdir(uploadDirectory);
       else 
         throw e
     }
 
-    filePath = uploadDirectory + "/" + files.fileUpload.name;
+    const filePath = uploadDirectory + "/" + files.fileUpload.name;
     const tmpFile = files.fileUpload.path;
     await fs.rename(tmpFile, filePath);
 
@@ -70,7 +69,7 @@ router.post('/uploads', async (req, res) => {
       if (err) {
         console.log("error during attachment resource finding (id: " + id + "): " + err);
       }
-      else if (resource == null) {
+      else if (resource === null) {
         console.log("resource not found");
       } 
       else {
@@ -83,8 +82,6 @@ router.post('/uploads', async (req, res) => {
         });
       }
     });
-
-
   });
 });
 // GET request for downloading an attachment
@@ -112,7 +109,7 @@ router.get('/', (req, res) => {
 
 // POST request for Insert Resource
 router.post('/', (req, res) => {
-  if (req.body._id == '')
+  if (req.body._id === '')
     insertRecord(req, res);
   else
     updateRecord(req, res);
@@ -120,7 +117,7 @@ router.post('/', (req, res) => {
 
 // method to insert record into the database
 function insertRecord(req, res) {
-  var resource = new Resource({
+  const resource = new Resource({
       resourceTypeDisplay: req.body.resourceType,
       resourceName: req.body.resourceName,
       resourcePhone: req.body.resourcePhone,
@@ -144,7 +141,7 @@ function insertRecord(req, res) {
     if (!err)
       res.redirect('resource/list');
     else {
-      if (err.name == 'ValidationError') {
+      if (err.name === 'ValidationError') {
         handleValidationError(err, req.body);
         res.render("resource/addOrEdit", {
           resource: req.body,
@@ -183,7 +180,7 @@ function updateRecord(req, res) {
           }
         }
         var totalFails = 0;
-        for (const fail of doc.resourceReferralFails.values()) {
+        for (var fail of doc.resourceReferralFails.values()) {
           totalFails += fail;
         }
         doc.resourceSuccessPercent = (100 - 100 * totalFails / doc.resourceReferrals).toFixed(0) + "%";
@@ -192,7 +189,7 @@ function updateRecord(req, res) {
       res.redirect('resource/list');
     }
     else {
-      if (err.name == 'ValidationError') {
+      if (err.name === 'ValidationError') {
         handleValidationError(err, req.body);
         res.render("resource/addOrEdit", {
           viewTitle: 'Update Resource',
@@ -204,8 +201,6 @@ function updateRecord(req, res) {
         console.log('Error during record update : ' + err);
     }
   });
-
-
 }
 
 // GET request for the full list of resources
@@ -295,7 +290,9 @@ router.get('/delete/:id', (req, res) => {
       }
       res.redirect('/resource/list');
     }
-    else { console.log('Error in resource delete :' + err); }
+    else { 
+      console.log('Error in resource delete :' + err); 
+    }
   });
 });
 

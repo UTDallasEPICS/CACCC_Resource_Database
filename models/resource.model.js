@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // schema of the database
-var resourceSchema = new mongoose.Schema({
+const resourceSchema = new mongoose.Schema({
     resourceType: String,
     resourceTypeDisplay: String,
     resourceName: String,

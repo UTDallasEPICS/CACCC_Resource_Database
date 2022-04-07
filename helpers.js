@@ -27,7 +27,7 @@ process.resourceTypes = [
 // for use in the uploads.hbs renderer
 handlebars.registerHelper("downloads", (map, id) => {
     var body = "";
-    for (const key of map.keys()) {
+    for (var key of map.keys()) {
         console.log("file: " + key);
         body += '<tr><td><a href="/resource/attachments/' + id + '/' + handlebars.escapeExpression(key) + '">' + key.replace(':', '.') + '</a></td></tr>';
     }
@@ -38,7 +38,7 @@ handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     var body = "";
     list.forEach(element => {
         body += "<option value=\"" + handlebars.escapeExpression(element) + "\"";
-        if (element == defaultValue) {
+        if (element === defaultValue) {
             body += " selected";
         }
         body += ">" + handlebars.escapeExpression(element) + "</option>";
@@ -55,7 +55,7 @@ handlebars.registerHelper("typesDropdown", () => {
 });
 handlebars.registerHelper("alertFails", (dict, total) => {
     var output = "alert('Total Referrals: " + handlebars.escapeExpression(total) + "\\n";
-    for (let key of dict.keys()) {
+    for (var key of dict.keys()) {
         output += handlebars.escapeExpression(key) + ": " + handlebars.escapeExpression(dict.get(key)) + "\\n";
     }
     return new handlebars.SafeString(output + "')");

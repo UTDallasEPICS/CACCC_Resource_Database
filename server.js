@@ -10,8 +10,8 @@ const bodyparser = require('body-parser');
 const resourceController = require('./controller/resourceController');
 const fs = require('fs/promises');
 const targetBaseUrl = '/resource/list';
-var app = express();
-var router = express.Router();
+const app = express();
+const router = express.Router();
 process.uploadDir = "tmp";
 
 // use bodyparser using express's app object
