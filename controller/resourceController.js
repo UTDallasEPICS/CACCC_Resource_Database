@@ -54,7 +54,7 @@ router.post('/uploads', async (req, res) => {
       await fs.stat(uploadDirectory)
     } 
     catch (e) {
-      if (e.code == "ENOENT") 
+      if (e.code === "ENOENT") 
         await fs.mkdir(uploadDirectory);
       else 
         throw e
@@ -69,7 +69,7 @@ router.post('/uploads', async (req, res) => {
       if (err) {
         console.log("error during attachment resource finding (id: " + id + "): " + err);
       }
-      else if (resource == null) {
+      else if (resource === null) {
         console.log("resource not found");
       } 
       else {
@@ -109,7 +109,7 @@ router.get('/', (req, res) => {
 
 // POST request for Insert Resource
 router.post('/', (req, res) => {
-  if (req.body._id == '')
+  if (req.body._id === '')
     insertRecord(req, res);
   else
     updateRecord(req, res);
@@ -141,7 +141,7 @@ function insertRecord(req, res) {
     if (!err)
       res.redirect('resource/list');
     else {
-      if (err.name == 'ValidationError') {
+      if (err.name === 'ValidationError') {
         handleValidationError(err, req.body);
         res.render("resource/addOrEdit", {
           resource: req.body,
@@ -189,7 +189,7 @@ function updateRecord(req, res) {
       res.redirect('resource/list');
     }
     else {
-      if (err.name == 'ValidationError') {
+      if (err.name === 'ValidationError') {
         handleValidationError(err, req.body);
         res.render("resource/addOrEdit", {
           viewTitle: 'Update Resource',

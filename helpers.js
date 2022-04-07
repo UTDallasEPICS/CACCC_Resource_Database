@@ -38,7 +38,7 @@ handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     var body = "";
     list.forEach(element => {
         body += "<option value=\"" + handlebars.escapeExpression(element) + "\"";
-        if (element == defaultValue) {
+        if (element === defaultValue) {
             body += " selected";
         }
         body += ">" + handlebars.escapeExpression(element) + "</option>";
