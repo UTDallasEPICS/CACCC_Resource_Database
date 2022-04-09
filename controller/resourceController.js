@@ -273,6 +273,7 @@ router.get('/delete/:id', (req, res) => {
       //delete attachments folder for it too
       const folder = process.uploadDir + "/" + req.params.id;
 
+      /*
       //we have to delete all files in the directory before removing it.
       //there will be no nested folders, so only need to worry about files.
       let fileNames = await fs.readdir(folder);
@@ -286,6 +287,7 @@ router.get('/delete/:id', (req, res) => {
           console.log("error in deleting resource file (" + path.join(folder, value) + "): " + error);
         }
       });
+      */
       try {
         await fs.rmdir(folder);
       } 
