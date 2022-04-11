@@ -4,6 +4,6 @@ if ($DockerSvc -ne "mongo") {
     Wait-Job $job
 }
  
-cmd.exe /C start http://Localhost:3000
+cmd.exe /C start http://Localhost:3000;
  
 node .\server.js
