@@ -2,3 +2,4 @@ attachments/
 db_files/
 tmp/
 .vscode/
+package-lock.json/
