@@ -64,6 +64,7 @@ router.post('/uploads', async (req, res) => {
     const filePath = uploadDirectory + "/" + files.fileUpload.name;
     const tmpFile = files.fileUpload.path;
     await fs.rename(tmpFile, filePath);
+    const fs1 = require('fs');
 
     // add the new uploaded filename to the record
     Resource.findById(id, (err, resource) => {
@@ -79,6 +80,7 @@ router.post('/uploads', async (req, res) => {
         resource.save((err, doc) => {
           if (err)
             console.log('Error during attachment insertion: ' + err);
+          
           res.redirect('/resource/uploads/' + id);
         });
       }
