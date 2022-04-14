@@ -12,7 +12,7 @@ const fs = require('fs/promises');
 const targetBaseUrl = '/resource/list';
 const app = express();
 const router = express.Router();
-process.uploadDir = "tmp";
+process.uploadDir = "attachments";
 
 // use bodyparser using express's app object
 app.use(bodyparser.urlencoded({
@@ -31,11 +31,11 @@ app.set('view engine', 'hbs');
 app.listen(3000, async () => {
   console.log('Express server started at port : 3000');
   try {
-    await fs.stat("tmp")
+    await fs.stat("attachments")
   } 
   catch (e) {
     if (e.code == "ENOENT") 
-      await fs.mkdir("tmp");
+      await fs.mkdir("attachments");
     else 
       throw e
   }
