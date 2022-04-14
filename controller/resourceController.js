@@ -283,8 +283,9 @@ router.get('/delete/:id', (req, res) => {
         console.log("Error in removing resource directory (" + folder + "): " + error);
       }
       res.redirect('/resource/list');
-    } else { 
-        console.log('Error in resource delete :' + err); 
+    } 
+    else { 
+      console.log('Error in resource delete :' + err); 
     }
   });
 });
