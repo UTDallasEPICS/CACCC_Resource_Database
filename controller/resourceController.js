@@ -44,9 +44,10 @@ router.post('/uploads', async (req, res) => {
   });
 
   form.parse(req, async (err, fields, files) => {
+    //Name of file if exists
     const fName = String(files.fileUpload.name);
-    console.log(fName.length);
 
+    // Is valid file there?
     if (fName.length > 0) {
       if (err) {
         console.log("error during attachment form parsing: " + err);
@@ -90,8 +91,9 @@ router.post('/uploads', async (req, res) => {
         }
       });
     }
+    // If no resource selected, redirect
     else {
-      console.log("No file selected");
+      res.redirect('/resource/');
     }
   });
 });
