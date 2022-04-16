@@ -40,53 +40,62 @@ router.post('/uploads', async (req, res) => {
   
   const form = formidable.IncomingForm({
     keepExtensions: true,
-    uploadDir: "attachments/"
+    uploadDir: "tmp/"
   });
 
   form.parse(req, async (err, fields, files) => {
-    if (err) {
-      console.log("error during attachment form parsing: " + err);
-      res.redirect('/uploads/' + id);
-    }
-    const uploadDirectory = process.uploadDir + "/" + fields._id;
-    id = fields._id;
+    const fName = String(files.fileUpload.name);
+    console.log(fName.length);
 
-    try {
-      await fs.stat(uploadDirectory)
-    } 
-    catch (e) {
-      if (e.code === "ENOENT") 
-        await fs.mkdir(uploadDirectory);
-      else 
-        throw e
-    }
-
-    const filePath = uploadDirectory + "/" + files.fileUpload.name;
-    const tmpFile = files.fileUpload.path;
-    await fs.rename(tmpFile, filePath);
-    const fs1 = require('fs');
-
-    // add the new uploaded filename to the record
-    Resource.findById(id, (err, resource) => {
+    if (fName.length > 0) {
       if (err) {
-        console.log("error during attachment resource finding (id: " + id + "): " + err);
+        console.log("error during attachment form parsing: " + err);
+        res.redirect('/uploads/' + id);
       }
-      else if (resource === null) {
-        console.log("resource not found");
+      const uploadDirectory = process.uploadDir + "/" + fields._id;
+      id = fields._id;
+  
+      try {
+        await fs.stat(uploadDirectory)
       } 
-      else {
-        // mongoose maps cannot have '.' in a key
-        resource.resourceFiles.set(files.fileUpload.name.replace(".", ":"), filePath); 
-        resource.save((err, doc) => {
-          if (err)
-            console.log('Error during attachment insertion: ' + err);
-          
-          res.redirect('/resource/uploads/' + id);
-        });
+      catch (e) {
+        if (e.code === "ENOENT") 
+          await fs.mkdir(uploadDirectory);
+        else 
+          throw e
       }
-    });
+  
+      const filePath = uploadDirectory + "/" + files.fileUpload.name;
+      const tmpFile = files.fileUpload.path;
+      await fs.rename(tmpFile, filePath);
+      const fs1 = require('fs');
+
+      // add the new uploaded filename to the record
+      Resource.findById(id, (err, resource) => {
+        if (err) {
+          console.log("error during attachment resource finding (id: " + id + "): " + err);
+        }
+        else if (resource === null) {
+          console.log("resource not found");
+        } 
+        else {
+          // mongoose maps cannot have '.' in a key
+          resource.resourceFiles.set(files.fileUpload.name.replace(".", ":"), filePath); 
+          resource.save((err, doc) => {
+            if (err)
+              console.log('Error during attachment insertion: ' + err);
+            
+            res.redirect('/resource/uploads/' + id);
+          });
+        }
+      });
+    }
+    else {
+      console.log("No file selected");
+    }
   });
 });
+
 // GET request for downloading an attachment
 router.get('/attachments/:id/:filename', (req, res) => {
   Resource.findById(req.params.id, (err, doc) => {
