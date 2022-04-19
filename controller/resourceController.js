@@ -40,7 +40,7 @@ router.post('/uploads', async (req, res) => {
   
   const form = formidable.IncomingForm({
     keepExtensions: true,
-    uploadDir: "tmp/"
+    uploadDir: "attachments/"
   });
 
   form.parse(req, async (err, fields, files) => {
@@ -93,7 +93,7 @@ router.post('/uploads', async (req, res) => {
     }
     // If no resource selected, redirect
     else {
-      res.redirect('/resource/');
+      res.redirect('back');
     }
   });
 });
