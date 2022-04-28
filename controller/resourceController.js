@@ -93,7 +93,7 @@ router.post('/uploads', async (req, res) => {
     }
     // If no resource selected, redirect
     else {
-      res.redirect('/resource/');
+      res.redirect('back');
     }
   });
 });
@@ -132,17 +132,17 @@ router.post('/', (req, res) => {
 // method to insert record into the database
 function insertRecord(req, res) {
   const resource = new Resource({
-      resourceTypeDisplay: req.body.resourceType,
-      resourceName: req.body.resourceName,
-      resourcePhone: req.body.resourcePhone,
-      resourceAddress: req.body.resourceAddress,
-      resourceCity: req.body.resourceCity,
-      resourceState: req.body.resourceState,
-      resourceZip: req.body.resourceZip,
-      resourceHours: req.body.resourceHours,
-      resourceWebsite: req.body.resourceWebsite,
-      resourceServices: req.body.resourceServices,
-      resourceLink: req.body.resourceLink,
+      ... req.body.resourceType,
+      ... req.body.resourceName,
+      ... req.body.resourcePhone,
+      ... req.body.resourceAddress,
+      ... req.body.resourceCity,
+      ... req.body.resourceState,
+      ... req.body.resourceZip,
+      ... req.body.resourceHours,
+      ... req.body.resourceWebsite,
+      ... req.body.resourceServices,
+      ... req.body.resourceLink,
       resourceReferrals: 0,
       resourceSuccessPercent: "0%",
       resourceReferralFails: {},
