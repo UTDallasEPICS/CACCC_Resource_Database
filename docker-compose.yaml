@@ -1,0 +1,22 @@
+services:
+  database:
+    image: docker.io/library/mongo
+    networks:
+      - caccc
+    ports:
+      - "27017:27017"
+    volumes:
+      - caccc-db:/data/db:Z
+  web:
+    build: web
+    networks:
+      - caccc
+    ports:
+      - "3000:3000"
+
+volumes:
+  caccc-db:
+    external: false
+
+networks:
+  caccc:

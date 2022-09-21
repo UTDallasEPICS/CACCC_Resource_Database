@@ -1,9 +1,10 @@
-$DockerSvc = docker container ls --filter name="mongo" --format '{{.Image}}';
-if ($DockerSvc -ne "mongo") {
-    $job = Start-Job { docker run --name mongo -p 27017:27017 -v caccc-db:/data/db -d --rm mongo; }
+# build images if the project image list is empty.
+if (-not (docker-compose -p caccc images -q;)) {
+    $job = Start-Job { docker-compose -p caccc build }
     Wait-Job $job
 }
- 
-cmd.exe /C start http://Localhost:3000;
- 
-node .\server.js
+# start the orchestrated containers if not started.
+if (-not (docker-compose -p caccc ps --filter "status=running" -q)) {
+    $job = Start-Job { docker-compose -p caccc up -d }
+    Wait-Job $job
+}
