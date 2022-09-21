@@ -1,5 +1,5 @@
 # docker-related files
-frontend/Dockerfile
+web/Dockerfile
 docker-compose.yml
 .dockerignore
 # repository files
