@@ -23,7 +23,7 @@ function processResourceType(type) {
 
 // GET request for Uploads
 router.get('/uploads/:id', (req, res) => {
-  Resource.findById(req.params.id, (err, doc) => {
+  Resource.findById(req.params.id, {lean: true},(err, doc) => {
     if (!err) {
       res.render("resource/uploads", {
         viewTitle: "Uploads",
@@ -72,7 +72,7 @@ router.post('/uploads', async (req, res) => {
       const fs1 = require('fs');
 
       // add the new uploaded filename to the record
-      Resource.findById(id, (err, resource) => {
+      Resource.findById(id, {lean: true},(err, resource) => {
         if (err) {
           console.log("error during attachment resource finding (id: " + id + "): " + err);
         }
@@ -100,7 +100,7 @@ router.post('/uploads', async (req, res) => {
 
 // GET request for downloading an attachment
 router.get('/attachments/:id/:filename', (req, res) => {
-  Resource.findById(req.params.id, (err, doc) => {
+  Resource.findById(req.params.id, {lean: true},(err, doc) => {
     if (err) {
       console.log(err);
       return;
@@ -123,6 +123,7 @@ router.get('/', (req, res) => {
 
 // POST request for Insert Resource
 router.post('/', (req, res) => {
+  console.log("hello")
   if (req.body._id === '')
     insertRecord(req, res);
   else
@@ -175,7 +176,7 @@ function updateRecord(req, res) {
   //updating all normal fields
   req.body.resourceTypeDisplay = req.body.resourceType;
   req.body.resourceType = processResourceType(req.body.resourceType);
-  Resource.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+  Resource.findOneAndUpdate({ _id: req.body._id }, req.body, { lean: true, new: true }, (err, doc) => {
     if (!err) {
       //updating referrals
       //if for some reason the referrals gets corrupted, we will set it back to 0.
@@ -219,7 +220,7 @@ function updateRecord(req, res) {
 
 // GET request for the full list of resources
 router.get('/list', (req, res) => {
-  Resource.find((err, docs) => {
+  Resource.find({}, {lean: true},(err, docs) => {
     if (!err) {
       res.render("resource/list", {
         list: docs
@@ -238,7 +239,7 @@ router.get('/list/:type', (req, res) => {
     console.log("invalid resource type: " + type);
     return;
   }
-  Resource.find({ resourceType: type }, (err, result) => {
+  Resource.find({ resourceType: type }, {lean: true}, (err, result) => {
     if (err) {
       console.log(err);
       return;
@@ -253,7 +254,7 @@ router.get('/list/:type', (req, res) => {
 
 // POST request for searching the mongo database
 router.post('/list/search', (req, res) => {
-  Resource.find({ resourceSearchData: new RegExp(req.body.resourceSearchData, 'i') }, function (err, docs) { //search is a string that the funcition is searching for, edit as needed
+  Resource.find({ resourceSearchData: new RegExp(req.body.resourceSearchData, 'i') }, { lean: true}, function (err, docs) { //search is a string that the funcition is searching for, edit as needed
     if (err) {
       console.log(err);
       return
@@ -268,7 +269,7 @@ router.post('/list/search', (req, res) => {
 
 // GET request to update the selected resource
 router.get('/:id', (req, res) => {
-  Resource.findById(req.params.id, (err, doc) => {
+  Resource.findById(req.params.id, {lean: true}, (err, doc) => {
     if (!err) {
       res.render("resource/addOrEdit", {
         viewTitle: "Update Resource",
@@ -281,7 +282,7 @@ router.get('/:id', (req, res) => {
 
 // GET request to delete the selected resource
 router.get('/delete/:id', (req, res) => {
-  Resource.findByIdAndRemove(req.params.id, async (err, doc) => {
+  Resource.findByIdAndRemove(req.params.id, {lean: true}, async (err, doc) => {
     if (!err) {
       //delete attachments folder for it too
       const folder = process.uploadDir + "/" + req.params.id;
