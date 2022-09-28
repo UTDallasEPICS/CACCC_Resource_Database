@@ -1,6 +1,4 @@
-attachments/
-db_files/
-attachments/
-.vscode/
-package-lock.json/
-.vs/
+.vscode
+.vs
+web/package-lock.json
+web/node_modules

@@ -1,0 +1,7 @@
+# docker-related files
+web/Dockerfile
+docker-compose.yml
+.dockerignore
+# repository files
+README.md
+resources

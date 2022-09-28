@@ -1,9 +1,12 @@
 #!/bin/bash
 
-DockerSvc=$(docker container ls --filter name="mongo" --format '{{.Image}}')
-if [[ "$DockerSvc" != "mongo" ]]; then
-    docker run --name mongo -p 27017:27017 -v caccc-db:/data/db -d --rm mongo
+# build images if the project image list is empty.
+if [[ -z "$( docker-compose -p caccc images -q )" ]]; then 
+    docker-compose -p caccc build
     wait
 fi
-python -mwebbrowser http://localhost:3000
-node .\\server.js
+# start the orchestrated containers if not started.
+if [[ -z "$( docker-compose -p caccc ps --filter "status=running" -q )" ]]; then
+    docker-compose -p caccc up -d
+    wait
+fi
