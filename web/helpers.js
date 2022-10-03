@@ -54,8 +54,9 @@ handlebars.registerHelper("typesDropdown", () => {
     return new handlebars.SafeString(body);
 });
 handlebars.registerHelper("alertFails", (dict, total) => {
+    if(!dict) return ""
     var output = "alert('Total Referrals: " + handlebars.escapeExpression(total) + "\\n";
-    for (var key of dict.keys()) {
+    for (var key of Object.keys(dict)) {
         output += handlebars.escapeExpression(key) + ": " + handlebars.escapeExpression(dict.get(key)) + "\\n";
     }
     return new handlebars.SafeString(output + "')");

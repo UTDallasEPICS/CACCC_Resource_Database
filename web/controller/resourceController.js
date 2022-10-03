@@ -222,7 +222,7 @@ router.get('/list', (req, res) => {
   Resource.find((err, docs) => {
     if (!err) {
       res.render("resource/list", {
-        list: docs
+        list: JSON.parse(JSON.stringify(docs))
       });
     }
     else {
