@@ -27,7 +27,7 @@ process.resourceTypes = [
 // for use in the uploads.hbs renderer
 handlebars.registerHelper("downloads", (map, id) => {
     var body = "";
-    for (var key of map.keys()) {
+    for (var key of Object.keys(map)) {
         console.log("file: " + key);
         body += '<tr><td><a href="/resource/attachments/' + id + '/' + handlebars.escapeExpression(key) + '">' + key.replace(':', '.') + '</a></td></tr>';
     }
@@ -57,7 +57,8 @@ handlebars.registerHelper("alertFails", (dict, total) => {
     if(!dict) return ""
     var output = "alert('Total Referrals: " + handlebars.escapeExpression(total) + "\\n";
     for (var key of Object.keys(dict)) {
-        output += handlebars.escapeExpression(key) + ": " + handlebars.escapeExpression(dict.get(key)) + "\\n";
+        output += handlebars.escapeExpression(key) + ": " + handlebars.escapeExpression(dict[key]) + "\\n";
     }
     return new handlebars.SafeString(output + "')");
 });
+// TODO: add helper for resourceLink 

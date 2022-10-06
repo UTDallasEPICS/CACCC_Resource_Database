@@ -27,7 +27,7 @@ router.get('/uploads/:id', (req, res) => {
     if (!err) {
       res.render("resource/uploads", {
         viewTitle: "Uploads",
-        resource: doc,
+        resource: JSON.parse(JSON.stringify(doc)),
       });
     }
   });
@@ -245,7 +245,7 @@ router.get('/list/:type', (req, res) => {
     }
     else {
       res.render("resource/list", {
-        list: result
+        list: JSON.parse(JSON.stringify(result))
       });
     }
   })
@@ -260,7 +260,7 @@ router.post('/list/search', (req, res) => {
     }
     else {
       res.render("resource/list", {
-        list: docs
+        list: JSON.parse(JSON.stringify(docs))
       });
     }
   })
@@ -272,7 +272,7 @@ router.get('/:id', (req, res) => {
     if (!err) {
       res.render("resource/addOrEdit", {
         viewTitle: "Update Resource",
-        resource: doc,
+        resource: JSON.parse(JSON.stringify(doc)),
         types: process.resourceTypes
       });
     }
