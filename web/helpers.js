@@ -33,7 +33,7 @@ handlebars.registerHelper("downloads", (map, id) => {
     }
     return new handlebars.SafeString(body);
 });
-// for use in the addOrEdit dropdown
+// for use in the addOrEdit.hbs dropdown
 handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     var body = "";
     list.forEach(element => {
@@ -53,6 +53,7 @@ handlebars.registerHelper("typesDropdown", () => {
     });
     return new handlebars.SafeString(body);
 });
+// for use in the addOrEdit.hbs resource referrals and fails
 handlebars.registerHelper("alertFails", (dict, total) => {
     if(!dict) return ""
     var output = "alert('Total Referrals: " + handlebars.escapeExpression(total) + "\\n";
@@ -61,4 +62,11 @@ handlebars.registerHelper("alertFails", (dict, total) => {
     }
     return new handlebars.SafeString(output + "')");
 });
-// TODO: add helper for resourceLink 
+// for use in the list.hbs additional resource hyperlinks
+handlebars.registerHelper("resourceLinks", (str) => {
+    var links = "";
+    str.split('\n').forEach(element => {
+        links += "<a href=\"" + handlebars.escapeExpression(element) + "\">" + handlebars.escapeExpression(element) + "</a>";
+    });
+    return new handlebars.SafeString(links);
+})
