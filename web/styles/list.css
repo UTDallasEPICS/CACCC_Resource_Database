@@ -1,18 +1,25 @@
 .sortableHeader:hover {
-    cursor:pointer;
-    background:#AAA;
+  cursor: pointer;
+  background: #aaa;
 }
 
 table {
-    table-layout: fixed;
-    word-wrap: normal;
+  table-layout: fixed;
+  word-wrap: normal;
 }
 
 .extraInfo {
-    display: none;
+  display: none;
 }
 
 p:hover .extraInfo {
-    transition-timing-function: linear;
-    display: inline-block;
+  transition-timing-function: linear;
+  display: inline-block;
+}
+
+.align {
+  position: relative;
+  width: 17%;
+  max-width: 20%;
+  min-width: 15%;
 }

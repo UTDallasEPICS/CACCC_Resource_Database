@@ -1,13 +1,13 @@
 .sidebar {
-  color: #FFF;
+  color: #fff;
   width: 253px;
   height: 100vh;
   position: fixed;
   z-index: 2;
-  -webkit-transition: margin .5s;
-  transition: margin .5s;
+  -webkit-transition: margin 0.5s;
+  transition: margin 0.5s;
   list-style: none;
-  top:0;
+  top: 0;
   overflow: hidden;
 }
 
@@ -42,12 +42,12 @@ li a {
   margin-top: 10px;
   margin-left: -30px;
 }
-.resourceTypes{
+.resourceTypes {
   margin-top: 18.6px;
   /* padding-bottom: 3px; */
 }
 
-.search[type=text] {
+.search[type="text"] {
   width: 500px;
   box-sizing: border-box;
   border: 2px solid #ccc;
