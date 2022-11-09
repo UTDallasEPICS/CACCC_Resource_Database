@@ -222,6 +222,7 @@ router.get('/list', (req, res) => {
   Resource.find((err, docs) => {
     if (!err) {
       res.render("resource/list", {
+        columnNames: ['Type', 'Name', 'Phone', 'Address', 'City', 'State', 'Zipcode', 'Hours', 'Website', 'Links', 'Referrals', 'Success'],
         list: JSON.parse(JSON.stringify(docs))
       });
     }
@@ -245,6 +246,7 @@ router.get('/list/:type', (req, res) => {
     }
     else {
       res.render("resource/list", {
+        columnNames: ['Type', 'Name', 'Phone', 'Address', 'City', 'State', 'Zipcode', 'Hours', 'Website', 'Links', 'Referrals', 'Success'],
         list: JSON.parse(JSON.stringify(result))
       });
     }
@@ -260,6 +262,7 @@ router.post('/list/search', (req, res) => {
     }
     else {
       res.render("resource/list", {
+        
         list: JSON.parse(JSON.stringify(docs))
       });
     }

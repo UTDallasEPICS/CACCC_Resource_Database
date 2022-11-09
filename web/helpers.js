@@ -69,4 +69,16 @@ handlebars.registerHelper("resourceLinks", (str) => {
         links += "<a href=\"" + handlebars.escapeExpression(element) + "\">" + handlebars.escapeExpression(element) + "</a>";
     });
     return new handlebars.SafeString(links);
-})
+});
+// for use in the list.hbs list tag attribute generation
+handlebars.registerHelper("isOdd", (num) => {
+    return num % 2 != 0;
+});
+const sortableStrColumns = ['Type', 'Name', 'City', 'State'];
+const sortableNumColumns = ['Zipcode', 'Referrals', 'Success'];
+handlebars.registerHelper("isSortableByStr", (col) => {
+    return sortableStrColumns.includes(col);
+});
+handlebars.registerHelper("isSortableByNum", (col) => {
+    return sortableNumColumns.includes(col);
+});

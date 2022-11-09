@@ -60,3 +60,15 @@ li a {
   margin-left: 20px;
   padding-bottom: 8px;
 }
+/**
+#list {
+  display: grid;
+  grid-template-columns: min-content minmax(31.25%, 480px) auto;
+}
+
+#list tbody tr th, #list tbody tr td {
+  width: 17.5vw;
+  max-width: 250px;
+}
+
+**/

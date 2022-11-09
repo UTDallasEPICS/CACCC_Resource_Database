@@ -5,3 +5,4 @@ docker-compose.yml
 # repository files
 README.md
 resources
+web/node_modules
