@@ -289,10 +289,10 @@ router.get('/delete/attachments/:id/:attachment', (req, res) => {
         await fs.rm(file, (err) => {
           if (err) {
             throw err;
-          };
+          }
           Resource.findById(req.params.id, (err, resource) => {
             resource.resourceFiles.rm(files.fileUpload.name.replaceAll(".", ":"));
-          }
+          });
         });
       } 
       catch (error) {
