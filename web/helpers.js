@@ -25,21 +25,10 @@ process.resourceTypes = [
     "Transportation",
 ];
 // for use in the uploads.hbs renderer
-handlebars.registerHelper("downloads", (map, id) => {
-    var body = "";
-    for (var filename of Object.keys(map)) {
-        console.log("file: " + filename);
-        body += '<tr><td><a href="/resource/attachments/' + id + '/' + handlebars.escapeExpression(filename) + '">' + filename.replace(':', '.') + '</a></td><td><a href="/resource/delete/"'+id+"/"+handlebars.escapeExpression(filename)
-        +'onclick="return confirm(\'Are you sure to delete this attachment?\');"> \
-        <i class="fa fa-trash fa-2x" \
-            style="color:red;" \
-            aria-hidden="true">\
-        </i>\
-    </a></td></tr>';
-        
-    }
-    return new handlebars.SafeString(body);
+handlebars.registerHelper("displayName", (filename) => {
+    return handlebars.escapeExpression(filename.replace(':', '.'));
 });
+
 // for use in the addOrEdit.hbs dropdown
 handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     var body = "";

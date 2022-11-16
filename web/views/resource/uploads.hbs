@@ -21,7 +21,19 @@
             </tr>
         </thread>
         <tbody id="tbody">
-            {{downloads resource.resourceFiles resource._id}}
+            {{#each resource.resourceFiles}}
+            <tr>
+                <td>
+                    <a href="/resource/{{this}}">{{displayName @key}}</a>
+                </td>
+                <td>
+                    <a href="/resource/delete/{{this}}"
+                        onclick="return confirm(\'Are you sure to delete this attachment?\');">
+                        <i class="fa fa-trash fa-2x" style="color:red;" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
         </tbody>
     </table>
 </form>

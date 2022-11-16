@@ -105,7 +105,7 @@ router.get('/attachments/:id/:filename', (req, res) => {
       console.log(err);
       return;
     }
-    res.download(doc.resourceFiles.get(req.params.filename), (err) => {
+    res.download(doc.resourceFiles.get(req.params.filename.replaceAll(".",":")), (err) => {
       if (err) {
         console.log(err);
       }
@@ -279,31 +279,35 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// GET request to delete the selected resource
+// GET request to delete the selected resource attachment
 router.get('/delete/attachments/:id/:attachment', (req, res) => {
-  Resource.findByIdAndRemove(req.params.id, async (err, doc) => {
+  const key = req.params.attachment.replaceAll(".",":");
+  const file = process.uploadDir + "/" + req.params.id + "/" + req.params.attachment;
+  
+  const model = Resource.findOneAndUpdate({key, file}, async (err, doc) => {
     if (!err) {
+      
+      console.log("Removing attachment entry: {"+key+" : "+file+"}");
       //delete attachments folder for it too
-      const file = process.uploadDir + "/" + req.params.id + "/" + req.params.attachment;
+      console.log("Also deleting the attachment file: "+file);
       try {
-        await fs.rm(file, (err) => {
+        await fs.rm(file, {}, (err) => {
           if (err) {
             throw err;
           }
-          Resource.findById(req.params.id, (err, resource) => {
-            resource.resourceFiles.rm(files.fileUpload.name.replaceAll(".", ":"));
-          });
         });
-      } 
+      }
       catch (error) {
         console.log("Error in removing resource attachment (" + file + "): " + error);
       }
-      res.redirect('/resource/uploads/:id');
+      res.redirect('/resource/uploads/'+req.params.id);
     }
     else { 
       console.log('Error in resource attachment delete :' + err); 
     }
   });
+  delete model.resourceFiles[key];
+  model.save();
 });
 
 // GET request to delete the selected resource
