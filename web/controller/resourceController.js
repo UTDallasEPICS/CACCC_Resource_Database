@@ -280,34 +280,29 @@ router.get('/:id', (req, res) => {
 });
 
 // GET request to delete the selected resource attachment
-router.get('/delete/attachments/:id/:attachment', (req, res) => {
+router.get('/delete/attachments/:id/:attachment', async (req, res) => {
   const key = req.params.attachment.replaceAll(".",":");
+
   const file = process.uploadDir + "/" + req.params.id + "/" + req.params.attachment;
   
-  const model = Resource.findOneAndUpdate({key, file}, async (err, doc) => {
-    if (!err) {
-      
-      console.log("Removing attachment entry: {"+key+" : "+file+"}");
-      //delete attachments folder for it too
-      console.log("Also deleting the attachment file: "+file);
-      try {
-        await fs.rm(file, {}, (err) => {
-          if (err) {
-            throw err;
-          }
-        });
+  const model = await Resource.findOne({_id:req.params.id});
+
+  model.resourceFiles.delete(key);
+  await model.save();
+
+  console.log("Also deleting the attachment file: "+file);
+  try {
+    await fs.rm(file, {}, (err) => {
+      if (err) {
+        throw err;
       }
-      catch (error) {
-        console.log("Error in removing resource attachment (" + file + "): " + error);
-      }
-      res.redirect('/resource/uploads/'+req.params.id);
-    }
-    else { 
-      console.log('Error in resource attachment delete :' + err); 
-    }
-  });
-  delete model.resourceFiles[key];
-  model.save();
+    });
+  }
+  catch (error) {
+    console.log("Error in removing resource attachment (" + file + "): " + error);
+  }
+  res.redirect('/resource/uploads/'+req.params.id);
+
 });
 
 // GET request to delete the selected resource
@@ -333,7 +328,5 @@ router.get('/delete/:id', (req, res) => {
     }
   });
 });
-
-
 
 module.exports = router;
