@@ -25,14 +25,10 @@ process.resourceTypes = [
     "Transportation",
 ];
 // for use in the uploads.hbs renderer
-handlebars.registerHelper("downloads", (map, id) => {
-    var body = "";
-    for (var key of Object.keys(map)) {
-        console.log("file: " + key);
-        body += '<tr><td><a href="/resource/attachments/' + id + '/' + handlebars.escapeExpression(key) + '">' + key.replace(':', '.') + '</a></td></tr>';
-    }
-    return new handlebars.SafeString(body);
+handlebars.registerHelper("displayName", (filename) => {
+    return handlebars.escapeExpression(filename.replace(':', '.'));
 });
+
 // for use in the addOrEdit.hbs dropdown
 handlebars.registerHelper("selectedDropDown", (defaultValue, list) => {
     var body = "";

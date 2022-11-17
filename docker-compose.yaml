@@ -13,9 +13,13 @@ services:
       - caccc
     ports:
       - "3000:3000"
+    volumes:
+      - caccc-files:/opt/web/attachments:Z
 
 volumes:
   caccc-db:
+    external: false
+  caccc-files:
     external: false
 
 networks:
