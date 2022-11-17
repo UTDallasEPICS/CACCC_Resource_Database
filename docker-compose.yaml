@@ -14,7 +14,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - caccc-files:/attachments:Z
+      - caccc-files:/opt/web/attachments:Z
 
 volumes:
   caccc-db:
