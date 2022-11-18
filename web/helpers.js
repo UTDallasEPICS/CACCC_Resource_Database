@@ -100,14 +100,6 @@ handlebars.registerHelper("resourceTypes", () => {
     return process.resourceTypes;
 });
 // for use in the addOrEdit.hbs resource referrals and fails
-handlebars.registerHelper("alertFails", (dict, total) => {
-    if(!dict) return ""
-    var output = "alert('Total Referrals: " + handlebars.escapeExpression(total) + "\\n";
-    for (var key of Object.keys(dict)) {
-        output += handlebars.escapeExpression(key) + ": " + handlebars.escapeExpression(dict[key]) + "\\n";
-    }
-    return new handlebars.SafeString(output + "')");
-});
 handlebars.registerHelper("stateConvert", (state)  =>{
     if (state == null) {
         return new handlebars.SafeString('TX');
@@ -115,10 +107,6 @@ handlebars.registerHelper("stateConvert", (state)  =>{
     return new handlebars.SafeString(states[state]);
 });
 // for use in the list.hbs additional resource hyperlinks
-handlebars.registerHelper("resourceLinks", (str) => {
-    var links = "";
-    str.split('\n').forEach(element => {
-        links += "<a href=\"" + handlebars.escapeExpression(element) + "\">" + handlebars.escapeExpression(element) + "</a>";
-    });
-    return new handlebars.SafeString(links);
-})
+handlebars.registerHelper("split", (str) => {
+    return str.split('\n');
+});
