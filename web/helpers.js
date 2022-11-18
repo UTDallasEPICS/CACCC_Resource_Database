@@ -88,15 +88,10 @@ const states = {
 };
 
 // for use in the uploads.hbs renderer
-handlebars.registerHelper("downloads", (map, id) => {
-    var body = "";
-    for (var key of Object.keys(map)) {
-        console.log("file: " + key);
-        body += '<tr><td><a href="/resource/attachments/' + id + '/' + handlebars.escapeExpression(key) + '">' + key.replace(':', '.') + '</a></td></tr>';
-    }
-    return new handlebars.SafeString(body);
+handlebars.registerHelper("displayName", (filename) => {
+    return handlebars.escapeExpression(filename.replace(':', '.'));
 });
-// for use in the addOrEdit dropdown
+// for use in the addOrEdit.hbs dropdown
 handlebars.registerHelper("isSelected", (value, selection) => {
     return value == selection;
 });
@@ -104,6 +99,7 @@ handlebars.registerHelper("isSelected", (value, selection) => {
 handlebars.registerHelper("resourceTypes", () => {
     return process.resourceTypes;
 });
+// for use in the addOrEdit.hbs resource referrals and fails
 handlebars.registerHelper("alertFails", (dict, total) => {
     if(!dict) return ""
     var output = "alert('Total Referrals: " + handlebars.escapeExpression(total) + "\\n";
@@ -112,10 +108,17 @@ handlebars.registerHelper("alertFails", (dict, total) => {
     }
     return new handlebars.SafeString(output + "')");
 });
-// TODO: add helper for resourceLink 
 handlebars.registerHelper("stateConvert", (state)  =>{
     if (state == null) {
         return new handlebars.SafeString('TX');
     }
     return new handlebars.SafeString(states[state]);
 });
+// for use in the list.hbs additional resource hyperlinks
+handlebars.registerHelper("resourceLinks", (str) => {
+    var links = "";
+    str.split('\n').forEach(element => {
+        links += "<a href=\"" + handlebars.escapeExpression(element) + "\">" + handlebars.escapeExpression(element) + "</a>";
+    });
+    return new handlebars.SafeString(links);
+})

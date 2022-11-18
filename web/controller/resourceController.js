@@ -134,7 +134,7 @@ router.post('/uploads', async (req, res) => {
         } 
         else {
           // mongoose maps cannot have '.' in a key
-          resource.resourceFiles.set(files.fileUpload.name.replace(".", ":"), filePath); 
+          resource.resourceFiles.set(files.fileUpload.name.replaceAll(".", ":"), filePath);
           resource.save((err, doc) => {
             if (err)
               console.log('Error during attachment insertion: ' + err);
@@ -158,7 +158,7 @@ router.get('/attachments/:id/:filename', (req, res) => {
       console.log(err);
       return;
     }
-    res.download(doc.resourceFiles.get(req.params.filename), (err) => {
+    res.download(doc.resourceFiles.get(req.params.filename.replaceAll(".",":")), (err) => {
       if (err) {
         console.log(err);
       }
@@ -341,6 +341,32 @@ router.get('/:id', (req, res) => {
   });
 });
 
+// GET request to delete the selected resource attachment
+router.get('/delete/attachments/:id/:attachment', async (req, res) => {
+  const key = req.params.attachment.replaceAll(".",":");
+
+  const file = process.uploadDir + "/" + req.params.id + "/" + req.params.attachment;
+  
+  const model = await Resource.findOne({_id:req.params.id});
+
+  model.resourceFiles.delete(key);
+  await model.save();
+
+  console.log("Also deleting the attachment file: "+file);
+  try {
+    await fs.rm(file, {}, (err) => {
+      if (err) {
+        throw err;
+      }
+    });
+  }
+  catch (error) {
+    console.log("Error in removing resource attachment (" + file + "): " + error);
+  }
+  res.redirect('/resource/uploads/'+req.params.id);
+
+});
+
 // GET request to delete the selected resource
 router.get('/delete/:id', (req, res) => {
   Resource.findByIdAndRemove(req.params.id, async (err, doc) => {
@@ -364,4 +390,5 @@ router.get('/delete/:id', (req, res) => {
     }
   });
 });
+
 module.exports = router;
