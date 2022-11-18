@@ -48,7 +48,9 @@
                         onchange="this.options[this.selectedIndex].value != '__filterby' && (window.location = '/resource/list/' + this.options[this.selectedIndex].value);">
                         <option value="__filterby" selected>Filter by...</option>
                         <option value="">No Filter</option>
-                        {{typesDropdown}}
+                        {{#each (resourceTypes)}}
+                                <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                 </select>
         </ul>
 </div>

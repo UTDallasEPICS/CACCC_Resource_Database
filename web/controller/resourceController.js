@@ -9,6 +9,59 @@ const fs = require('fs/promises');
 const path = require('path');
 const { formattedOrderClause } = require('mongodb/lib/utils');
 
+// state abbreviations to state names
+const states = {'AL':'Alabama',
+	'AK':'Alaska',
+	'AZ':'Arizona',
+	'AR':'Arkansas',
+	'CA':'California',
+	'CO':'Colorado',
+	'CT':'Connecticut',
+	'DE':'Delaware',
+	'DC':'District Of Columbia',
+	'FL':'Florida',
+	'GA':'Georgia',
+	'HI':'Hawaii',
+	'ID':'Idaho',
+	'IL':'Illinois',
+	'IN':'Indiana',
+	'IA':'Iowa',
+	'KS':'Kansas',
+	'KY':'Kentucky',
+	'LA':'Louisiana',
+	'ME':'Maine',
+	'MD':'Maryland',
+	'MA':'Massachusetts',
+	'MI':'Michigan',
+	'MN':'Minnesota',
+	'MS':'Mississippi',
+	'MO':'Missouri',
+	'MT':'Montana',
+	'NE':'Nebraska',
+	'NV':'Nevada',
+	'NH':'New Hampshire',
+	'NJ':'New Jersey',
+	'NM':'New Mexico',
+	'NY':'New York',
+	'NC':'North Carolina',
+	'ND':'North Dakota',
+	'OH':'Ohio',
+	'OK':'Oklahoma',
+	'OR':'Oregon',
+	'PA':'Pennsylvania',
+	'RI':'Rhode Island',
+	'SC':'South Carolina',
+	'SD':'South Dakota',
+	'TN':'Tennessee',
+	'TX':'Texas',
+	'UT':'Utah',
+	'VT':'Vermont',
+	'VA':'Virginia ',
+	'WA':'Washington',
+	'WV':'West Virginia',
+	'WI':'Wisconsin',
+	'WY':'Wyoming'};
+
 // processing resource types array (removing spaces and forcing lowercase)
 const processedResourceTypes = [];
 // we dont do this in the array to begin with for readability on the dropdown box
@@ -116,7 +169,9 @@ router.get('/attachments/:id/:filename', (req, res) => {
 // GET request for Insert Resource
 router.get('/', (req, res) => {
   res.render("resource/addOrEdit", {
+    states: states,
     viewTitle: "Insert Resource",
+    resource: req.body,
     types: process.resourceTypes
   });
 });
@@ -131,13 +186,14 @@ router.post('/', (req, res) => {
 
 // method to insert record into the database
 function insertRecord(req, res) {
+  const state = states[req.body.resourceState];
   const resource = new Resource({
       resourceTypeDisplay: req.body.resourceType,
       resourceName: req.body.resourceName,
       resourcePhone: req.body.resourcePhone,
       resourceAddress: req.body.resourceAddress,
       resourceCity: req.body.resourceCity,
-      resourceState: req.body.resourceState,
+      resourceState: state,
       resourceZip: req.body.resourceZip,
       resourceHours: req.body.resourceHours,
       resourceWebsite: req.body.resourceWebsite,
@@ -158,6 +214,7 @@ function insertRecord(req, res) {
       if (err.name === 'ValidationError') {
         handleValidationError(err, req.body);
         res.render("resource/addOrEdit", {
+          states: states,
           resource: req.body,
           types: process.resourceTypes
         });
@@ -175,6 +232,9 @@ function updateRecord(req, res) {
   //updating all normal fields
   req.body.resourceTypeDisplay = req.body.resourceType;
   req.body.resourceType = processResourceType(req.body.resourceType);
+  req.body.resourceState = states[req.body.resourceState].trim();
+  
+  
   Resource.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
     if (!err) {
       //updating referrals
@@ -207,6 +267,7 @@ function updateRecord(req, res) {
         handleValidationError(err, req.body);
         res.render("resource/addOrEdit", {
           viewTitle: 'Update Resource',
+          states: states,
           resource: req.body,
           types: process.resourceTypes
         });
@@ -272,6 +333,7 @@ router.get('/:id', (req, res) => {
     if (!err) {
       res.render("resource/addOrEdit", {
         viewTitle: "Update Resource",
+        states: states,
         resource: JSON.parse(JSON.stringify(doc)),
         types: process.resourceTypes
       });
