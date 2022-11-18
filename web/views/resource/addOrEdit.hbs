@@ -6,12 +6,19 @@
 {{/if}}
 <div style="padding:5px ">
     {{#if resource}}
-        <a href="uploads/{{resource._id}}"><button type="submit" class="btn btn-secondary"
-                style="position: absolute; right: 15px; top: 17px;"><i class="fa fa-archive"></i> View
-                Attachments</button></a>
-        <button onclick="{{alertFails resource.resourceReferralFails resource.resourceReferrals}}" class="btn btn-secondary"
-            style="position: absolute; right: 15px; top: 87px;"><i class="fa fa-minus-circle"></i> View Referral
-            Failures</button>
+        <a href="uploads/{{resource._id}}">
+            <button type="submit" class="btn btn-secondary"
+                style="position: absolute; right: 15px; top: 17px;"
+                ><i class="fa fa-archive"></i> View Attachments
+            </button>
+        </a>
+        <button onclick='alert("Total Referrals: {{resource.resourceReferrals}}
+            {{~#each resource.resourceReferralFails~}}
+            	\n{{@key}}: {{this}}
+            {{~/each~}}
+            ");' class="btn btn-secondary" style="position: absolute; right: 15px; top: 87px;"
+            ><i class="fa fa-minus-circle"></i> View Referral Failures
+        </button>
     {{/if}}
     <form action="/resource" method="POST" autocomplete="off">
         <input type="hidden" name="_id" value="{{resource._id}}">
