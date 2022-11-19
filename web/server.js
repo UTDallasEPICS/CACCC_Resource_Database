@@ -45,9 +45,14 @@ app.listen(3000, async () => {
 app.use('/resource/', resourceController);
 
 // use express's object to set static path to CSS files
-app.use(express.static(path.join(__dirname, '/')));
+// app.use(express.static(path.join(__dirname, '/')));
+app.get('*', (req, res) => {
+	res.redirect("https://sheets.google.com");
+});
 
+/*
 // any unknown url goes back to the main page
 app.get('*', (req, res) => {
   res.redirect(targetBaseUrl);
 });
+*/
