@@ -41,12 +41,16 @@
                     <button class="mdc-icon-button material-icons" style="color: black" id="addButton" name="Add Resource">add</button>
                     <button class="mdc-icon-button material-icons" style="color: black" id="editButton">mode_edit</button>
                     
+                    <script> document.getElementById("viewListButton").onclick = function () { location.href = "/resource/list";
+
+                    </script>
+                    <script> document.getElementById("editButton").onclick = function () { location.href = "/resource";
+
+                    </script>
                     <script> document.getElementById("viewListButton").onclick = function () { 
                         location.href = "/resource/list";
                     }; 
                     </script>
-
-
 
                     <script> document.getElementById("addButton").onclick = function () { 
                         location.href = "/resource";
