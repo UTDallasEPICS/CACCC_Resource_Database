@@ -200,6 +200,7 @@ function insertRecord(req, res) {
       resourceServices: req.body.resourceServices,
       resourceLink: req.body.resourceLink,
       resourceReferrals: 0,
+      resourceReferralsTimestamps: {},
       resourceSuccessPercent: "0%",
       resourceReferralFails: {},
       resourceFiles: {},

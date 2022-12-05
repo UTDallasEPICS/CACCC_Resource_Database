@@ -15,6 +15,11 @@ const resourceSchema = new mongoose.Schema({
     resourceServices: String,
     resourceLink: String,
     resourceReferrals: Number,
+
+    resourceReferralsTimestamps: {
+        type: Map,
+        of: Date
+    },
     
     // % of referrals that are successful.
     resourceSuccessPercent: String, 
