@@ -1,4 +1,5 @@
 const handlebars = require('handlebars');
+const moment = require('moment');
 
 // used for displaying categories in dropdowns, fail reasons, etc.
 process.resourceTypes = [
@@ -109,4 +110,8 @@ handlebars.registerHelper("stateConvert", (state)  =>{
 // for use in the list.hbs additional resource hyperlinks
 handlebars.registerHelper("split", (str) => {
     return str.split('\n');
+});
+
+handlebars.registerHelper("currentDate", (str) => {
+    return new handlebars.SafeString(moment(Date.now()).format('MM/DD/YYYY'));
 });

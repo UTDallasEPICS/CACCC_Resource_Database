@@ -235,7 +235,6 @@ function updateRecord(req, res) {
   req.body.resourceType = processResourceType(req.body.resourceType);
   req.body.resourceState = states[req.body.resourceState].trim();
   
-  
   Resource.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
     if (!err) {
       //updating referrals
@@ -246,6 +245,7 @@ function updateRecord(req, res) {
       if (req.body.resourceReferral != "") {
         //update referrals based on the input
         doc.resourceReferrals += 1;
+        doc.resourceReferralsTimestamps.set(req.body.resourceReferralDate, new Date(req.body.resourceReferralDate));
         if (req.body.resourceReferral != "Successful") {
           if (doc.resourceReferralFails.has(req.body.resourceReferral)) {
             doc.resourceReferralFails.set(req.body.resourceReferral, doc.resourceReferralFails.get(req.body.resourceReferral) + 1);

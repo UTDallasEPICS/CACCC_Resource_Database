@@ -4,7 +4,7 @@
 {{else}}
     <h3>Add Resource</h3>
 {{/if}}
-<div style="padding:5px ">
+<div style="padding:5px; background-color:white;">
     {{#if resource}}
         <a href="uploads/{{resource._id}}">
             <button type="submit" class="btn btn-secondary"
@@ -15,6 +15,10 @@
         <button onclick='alert("Total Referrals: {{resource.resourceReferrals}}
             {{~#each resource.resourceReferralFails~}}
             	\n{{@key}}: {{this}}
+            {{~/each~}}
+            \ntimestamps:
+            {{~#each resource.resourceReferralTimestamps~}}
+            	\n{{this}}
             {{~/each~}}
             ");' class="btn btn-secondary" style="position: absolute; right: 15px; top: 87px;"
             ><i class="fa fa-minus-circle"></i> View Referral Failures
@@ -44,6 +48,11 @@
                         </option>
                         <option value="Failed required testing">Failed: Required testing</option>
                     </select>
+                </div>
+                <div class="form-group col-md-7">
+                    <label style="font-weight: bold;">Date of Referral</label>
+                    <input type="text" class="form-control" name="resourceReferralDate" placeholder="Time"
+                        value="{{currentDate}}">
                 </div>
             </div>
         {{/if}}
