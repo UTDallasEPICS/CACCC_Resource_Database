@@ -245,7 +245,10 @@ function updateRecord(req, res) {
       if (req.body.resourceReferral != "") {
         //update referrals based on the input
         doc.resourceReferrals += 1;
-        doc.resourceReferralsTimestamps.set(req.body.resourceReferralDate, new Date(req.body.resourceReferralDate));
+        if (!doc.resourceReferralsTimestamps) {
+          doc.resourceReferralsTimestamps = new Map();
+        }
+        doc.resourceReferralsTimestamps.set(req.body.resourceReferral, req.body.resourceReferralDate);
         if (req.body.resourceReferral != "Successful") {
           if (doc.resourceReferralFails.has(req.body.resourceReferral)) {
             doc.resourceReferralFails.set(req.body.resourceReferral, doc.resourceReferralFails.get(req.body.resourceReferral) + 1);

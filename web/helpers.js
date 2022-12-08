@@ -101,6 +101,15 @@ handlebars.registerHelper("resourceTypes", () => {
     return process.resourceTypes;
 });
 // for use in the addOrEdit.hbs resource referrals and fails
+handlebars.registerHelper("isNotEmpty", (doc) => {
+    return Object.keys(doc).length != 0;
+});
+handlebars.registerHelper("currentDate", (str) => {
+    return Date.now();
+});
+handlebars.registerHelper("toDate", (timestamp) => {
+    return moment(timestamp).format("MM/DD/YYYY");
+});
 handlebars.registerHelper("stateConvert", (state)  =>{
     if (state == null) {
         return new handlebars.SafeString('TX');
@@ -110,8 +119,4 @@ handlebars.registerHelper("stateConvert", (state)  =>{
 // for use in the list.hbs additional resource hyperlinks
 handlebars.registerHelper("split", (str) => {
     return str.split('\n');
-});
-
-handlebars.registerHelper("currentDate", (str) => {
-    return new handlebars.SafeString(moment(Date.now()).format('MM/DD/YYYY'));
 });
