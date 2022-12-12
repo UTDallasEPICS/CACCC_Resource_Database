@@ -8,16 +8,20 @@ table {
     word-wrap: normal;
 }
 
-.extraInfo {
+/* .extraInfo {
     display: none;
 }
 
 p:hover .extraInfo {
     transition-timing-function: linear;
     display: inline-block;
-}
+} */
 
 #list tbody tr th, #list tbody tr td {
     width: 17.5vw;
     max-width: 250px;
+}
+
+.hidden {
+    display: none;
 }

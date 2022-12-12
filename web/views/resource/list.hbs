@@ -51,11 +51,18 @@
         <tr class="mdc-data-table__row" {{#if (isOdd @index)}} style="background-color: #F5F5F5;" {{/if}}>
             <th class="mdc-data-table__cell" scope="row">{{this.resourceTypeDisplay}}</th>
             <td class="mdc-data-table__cell">{{this.resourceName}}
-                <p style="font-size: small"> 
+                <p onclick="displayPopup()" style="font-size: small; cursor:pointer"> 
                     Show Info 
-                    <span class="extraInfo">{{this.resourceServices}}</span>
+                    <span class="hidden" id="myPopup">{{this.resourceServices}}</span>
                 </p>
+                <script>function displayPopup(){
+                  var popup=document.getElementById(myPopup);
+                  console.log(popup);
+                  popup.classList.toggle("hidden");
+                  }
+                </script>
             </td>
+            
             <td class="mdc-data-table__cell">{{this.resourcePhone}}</td>
             <td class="mdc-data-table__cell">{{this.resourceAddress}}</td>
             <td class="mdc-data-table__cell">{{this.resourceCity}}</td>
