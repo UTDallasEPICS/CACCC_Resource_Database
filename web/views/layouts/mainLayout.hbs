@@ -14,7 +14,7 @@
         <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
         
 </head>
-<body style="background-color: #45b249;">
+<body style="background-color: #45b249; overflow-x: hidden">
     <div class="grid-area">
         <header id="topbar" class=" mdc-top-app-bar" style="background-color: white; position: relative !important;">
             <div class="mdc-top-app-bar__row">
@@ -37,8 +37,31 @@
                     </form>
                 </section>
                 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-front">
-                    <button href="/resource/list" class="mdc-icon-button material-icons" style="color: black">view_list</button>
-                    <button class="mdc-icon-button material-icons" style="color: black">mode_edit</button>
+                    <button href="/resource/list" class="mdc-icon-button material-icons" style="color: black" id="viewListButton">view_list</button>
+                    <button class="mdc-icon-button material-icons" style="color: black" id="addButton" name="Add Resource">add</button>
+                    <button class="mdc-icon-button material-icons" style="color: black" id="editButton">mode_edit</button>
+                    
+                    <script> document.getElementById("viewListButton").onclick = function () { location.href = "/resource/list";}
+
+                    </script>
+                    
+
+                    <script> document.getElementById("addButton").onclick = function () { 
+                        location.href = "/resource";
+                    }; 
+                    </script> 
+
+                    <script> document.getElementById("editButton").onclick = function () {
+                            if (location.href.endsWith("editMode")) { 
+                                location.href = "/resource/list";
+                            }
+                            else{
+                                location.href = "/resource/editMode";
+                            }
+                        console.log(location.href); 
+                    
+                    }; 
+                    </script>
                 </section>
             </div>
         </header>

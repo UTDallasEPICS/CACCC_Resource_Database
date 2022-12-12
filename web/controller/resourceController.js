@@ -269,6 +269,58 @@ router.post('/list/search', (req, res) => {
   })
 });
 
+// GET request for the full list of resources for editMode
+router.get('/editMode', (req, res) => {
+  Resource.find((err, docs) => {
+    if (!err) {
+      res.render("resource/editMode", {
+        columnNames: ['Type', 'Name', 'Phone', 'Address', 'City', 'State', 'Zipcode', 'Hours', 'Website', 'Links', 'Referrals', 'Success'],
+        list: JSON.parse(JSON.stringify(docs))
+      });
+    }
+    else {
+      console.log('Error in retrieving resource list :' + err);
+    }
+  });
+});
+
+// GET request for filtering by a resource type for editMode
+router.get('/editMode/:type', (req, res) => {
+  const type = processResourceType(req.params.type)
+  if (!processedResourceTypes.includes(type)) {
+    console.log("invalid resource type: " + type);
+    return;
+  }
+  Resource.find({ resourceType: type }, (err, result) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    else {
+      res.render("resource/editMode", {
+        columnNames: ['Type', 'Name', 'Phone', 'Address', 'City', 'State', 'Zipcode', 'Hours', 'Website', 'Links', 'Referrals', 'Success'],
+        list: JSON.parse(JSON.stringify(result))
+      });
+    }
+  })
+});
+
+// POST request for searching the mongo database for editMode
+router.post('/editMode/search', (req, res) => {
+  Resource.find({ resourceSearchData: new RegExp(req.body.resourceSearchData, 'i') }, function (err, docs) { //search is a string that the funcition is searching for, edit as needed
+    if (err) {
+      console.log(err);
+      return
+    }
+    else {
+      res.render("resource/editMode", {
+        
+        list: JSON.parse(JSON.stringify(docs))
+      });
+    }
+  })
+});
+
 // GET request to update the selected resource
 router.get('/:id', (req, res) => {
   Resource.findById(req.params.id, (err, doc) => {
