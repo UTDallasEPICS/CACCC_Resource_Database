@@ -15,6 +15,7 @@
     "formidable": "^1.2.2",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.16",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.3",
+    "moment":"^2.29.4"
   }
 }
